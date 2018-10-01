@@ -10,6 +10,66 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
  */
 
 @import "bootstrap";
+@import "font-awesome";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Proxima Nova Alt", Helvetica, Arial, sans-serif;
+  font-size: 0.9em;
+  background-color: #ebedf2;
+  color: #6a7279;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #4db8ff
+}
+
+h1 {
+  color: #007bff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.small-select {
+  font-size: 10pt;
+}
+
+.page-title {
+  padding: 1px 0px 0px 5px;
+}
+
+.card {
+  box-shadow: 0 0.27778rem 1.11111rem 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0.44444rem !important;
+  margin: 0 0 10px 0;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 93%;
+  }
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.container {
+  padding: 85px 15px 0;
+  margin-left: 125px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}

@@ -1,0 +1,14 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Vertically center the text there */
+  background-color: #fff;
+}
+
+.footer>.container {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+}

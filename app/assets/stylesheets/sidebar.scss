@@ -1,0 +1,37 @@
+.sidebar {
+  position: fixed;
+  z-index: 1;
+  top: 75px;
+  left: 0;
+  overflow-x: hidden;
+  background: #fff;
+  min-width: 120px;
+  max-width: 120px;
+  height: 100%;
+  text-align: center;
+}
+
+.sidebar ul.components {
+  padding: 20px 0;
+}
+
+.sidebar ul li a {
+  padding: 10px;
+  font-size: 0.9em;
+  display: block;
+  color: #747577;
+}
+
+.sidebar ul li a.sidebar-active {
+  color: #5797dc;
+}
+
+.menu-icon {
+  padding: 2px 0 2px 0;
+  display: block;
+  font-size: 2.5em;
+}
+
+a {
+  text-decoration: none;
+}
