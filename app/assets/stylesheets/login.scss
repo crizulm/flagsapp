@@ -1,0 +1,122 @@
+div.login-background {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.hero-image {
+  width: 100%;
+  background-image: asset-data-url("login-logo.png");
+  background-repeat: no-repeat;
+  background-attachment: initial;
+  background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  padding: 0;
+}
+
+.logo {
+  background-image: asset-data-url("logo.png");
+  background-repeat: no-repeat;
+  margin-top: 3.33333rem;
+  margin-left: -14px;
+  padding-bottom: 125px;
+}
+
+.login-box {
+  width: 60%;
+  height: 100%;
+}
+
+.footer {
+  position: static;
+  bottom: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 110px;
+}
+
+.TooltipErrorMessage {
+  display: none;
+}
+
+[type='text'],
+[type='password'],
+[type='date'],
+[type='datetime'],
+[type='datetime-local'],
+[type='month'],
+[type='week'],
+[type='email'],
+[type='number'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='url'],
+[type='color'],
+textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.01111rem;
+  margin: 0 0 0.83333rem;
+  padding: 0.41667rem 0.83333rem;
+  border: 0.05556rem solid transparent;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.16667rem 0.22222rem 0 rgba(0, 0, 0, 0.1);
+  font-family: inherit;
+  font-size: 0.83333rem;
+  font-weight: normal;
+  line-height: 1.48;
+  color: #737277;
+  transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.button {
+  font-size: .7rem;
+  font-weight: bold;
+  box-shadow: 0 0.16667rem 0.22222rem 0 rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0.83333rem 0;
+  font-family: inherit;
+  padding: 0.85em 1.66667rem;
+  -webkit-appearance: none;
+  border: 1px solid transparent;
+  border-radius: 1.25rem;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  background-color: #3C8CFF;
+  color: #FFFFFF;
+}
+
+@media (min-width: 1680px) {
+  .button {
+    font-size: .9rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .button {
+    font-size: .8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .button {
+    font-size: .6rem;
+  }
+}
+
+a {
+  line-height: inherit;
+  color: #3C8CFF;
+  text-decoration: none;
+  cursor: pointer;
+}
