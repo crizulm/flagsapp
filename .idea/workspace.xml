@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ebe98a0-b458-471b-8326-edd843abe732" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/flag.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/flag.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20180924222006_devise_create_users.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20180924222006_devise_create_users.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20181011185354_create_flags.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20181011185354_create_flags.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20181011185746_create_reports.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20181011185746_create_reports.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20181011190046_create_external_users.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20181011190046_create_external_users.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +62,7 @@
           <entry key="Gemfile" value="82" />
           <entry key="erb" value="405" />
           <entry key="js" value="1" />
-          <entry key="rb" value="1184" />
+          <entry key="rb" value="1222" />
           <entry key="scss" value="195" />
         </counts>
       </usages-collector>
@@ -79,7 +70,7 @@
         <counts>
           <entry key="JavaScript" value="1" />
           <entry key="RHTML" value="405" />
-          <entry key="Ruby" value="1266" />
+          <entry key="Ruby" value="1304" />
           <entry key="SCSS" value="195" />
         </counts>
       </usages-collector>
@@ -90,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users/registrations_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+            <state relative-caret-position="270">
+              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -378,7 +369,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28738000" />
+    <option name="totallyTimeSpent" value="28819000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -671,8 +662,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users/registrations_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+        <state relative-caret-position="270">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
         </state>
       </provider>
     </entry>

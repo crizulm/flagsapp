@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       organization.name = "Organization " + resource.email
       organization.save
       resource.organization = organization
+      resource.is_admin = true
       resource.save
     end
   end
