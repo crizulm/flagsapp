@@ -11,7 +11,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    super do
+      organization = Organization.new
+      organization.name = "Organization " + resource.email
+      organization.save
+      resource.organization = organization
+      resource.save
+    end
   end
 
   # GET /resource/edit

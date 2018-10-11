@@ -6,7 +6,7 @@ class CreateFlags < ActiveRecord::Migration[5.2]
       t.boolean :active
       t.integer :percentage
       t.string :token
-      t.belongs_to :organizations, foreign_key: true
+      t.belongs_to :organization, foreign_key: true
 
       t.timestamps
     end

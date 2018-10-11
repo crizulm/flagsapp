@@ -5,7 +5,7 @@ class CreateReports < ActiveRecord::Migration[5.2]
       t.integer :true_answer
       t.integer :false_answer
       t.integer :total_time
-      t.belongs_to :flags, foreign_key: true
+      t.belongs_to :flag, foreign_key: true
 
       t.timestamps
     end

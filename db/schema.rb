@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_190046) do
+ActiveRecord::Schema.define(version: 2018_10_11_213955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2018_10_11_190046) do
   create_table "external_users", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "active"
-    t.bigint "flags_id"
+    t.bigint "flag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["flags_id"], name: "index_external_users_on_flags_id"
+    t.index ["flag_id"], name: "index_external_users_on_flag_id"
   end
 
   create_table "flags", force: :cascade do |t|
@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 2018_10_11_190046) do
     t.boolean "active"
     t.integer "percentage"
     t.string "token"
-    t.bigint "organizations_id"
+    t.bigint "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["organizations_id"], name: "index_flags_on_organizations_id"
+    t.index ["organization_id"], name: "index_flags_on_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -47,24 +47,26 @@ ActiveRecord::Schema.define(version: 2018_10_11_190046) do
     t.integer "true_answer"
     t.integer "false_answer"
     t.integer "total_time"
-    t.bigint "flags_id"
+    t.bigint "flag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["flags_id"], name: "index_reports_on_flags_id"
+    t.index ["flag_id"], name: "index_reports_on_flag_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.string "surname", default: "", null: false
-    t.boolean "is_admin", default: false, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", default: "", null: false
+    t.string "surname", default: "", null: false
+    t.boolean "is_admin", default: false, null: false
+    t.bigint "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 
-  add_foreign_key "external_users", "flags", column: "flags_id"
-  add_foreign_key "flags", "organizations", column: "organizations_id"
-  add_foreign_key "reports", "flags", column: "flags_id"
+  add_foreign_key "external_users", "flags"
+  add_foreign_key "flags", "organizations"
+  add_foreign_key "reports", "flags"
 end

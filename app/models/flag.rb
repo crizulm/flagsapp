@@ -1,3 +1,3 @@
 class Flag < ApplicationRecord
-  belongs_to :organizatios
+  belongs_to :organization
 end
