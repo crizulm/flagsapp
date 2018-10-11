@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FlagsApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true%>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <%= render 'layouts/navbar' %>
+
+      <%= render 'layouts/sidebar' %>
+
+      <main role="main" class="container">
+        <%= render 'layouts/content' %>
+      </main>
+
+      <%= render 'layouts/footer' %>
+    </div>
+  </body>
+</html>
