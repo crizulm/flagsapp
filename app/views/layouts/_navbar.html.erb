@@ -13,7 +13,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            user@user.com
+            <%= current_user.email %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to 'Log out', destroy_user_session_path, method: :delete, :class => "dropdown-item" %>
