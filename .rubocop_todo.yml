@@ -59,6 +59,18 @@ Layout/TrailingWhitespace:
     - 'config/initializers/devise.rb'
     - 'config/routes.rb'
 
+Layout/IndentationConsistency:
+  Exclude:
+    - 'config/initializers/*'
+
+Layout/CommentIndentation:
+  Exclude:
+    - 'config/initializers/*'
+
+Layout/IndentationWidth:
+  Exclude:
+    - 'config/initializers/*'
+
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, EnforcedStyle.
@@ -66,12 +78,15 @@ Layout/TrailingWhitespace:
 Style/ClassAndModuleChildren:
   Exclude:
     - 'test/test_helper.rb'
+    - 'app/controllers/users/*'
 
 # Offense count: 10
 Style/Documentation:
   Exclude:
     - 'app/controllers/*'
+    - 'app/controllers/users/*'
     - 'app/models/*'
+    - 'db/migrate/*'
     - 'spec/**/*'
     - 'test/**/*'
     - 'app/helpers/application_helper.rb'
@@ -79,7 +94,6 @@ Style/Documentation:
     - 'app/helpers/home_helper.rb'
     - 'app/mailers/application_mailer.rb'
     - 'config/application.rb'
-    - 'db/migrate/20180924222006_devise_create_users.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -163,3 +177,7 @@ Style/SymbolArray:
 # URISchemes: http, https
 Metrics/LineLength:
   Max: 154
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/schema.rb'

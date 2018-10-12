@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  #before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do
       organization = Organization.new
-      organization.name = "Organization " + resource.email
+      organization.name = 'Organization ' + resource.email
       organization.save
       resource.organization = organization
       resource.is_admin = true

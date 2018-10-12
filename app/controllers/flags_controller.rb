@@ -1,4 +1,2 @@
 class FlagsController < ApplicationController
-
-
 end
