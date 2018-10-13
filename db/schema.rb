@@ -68,5 +68,4 @@ ActiveRecord::Schema.define(version: 2018_10_11_213955) do
 
   add_foreign_key "external_users", "flags"
   add_foreign_key "flags", "organizations"
-  add_foreign_key "reports", "flags"
 end
