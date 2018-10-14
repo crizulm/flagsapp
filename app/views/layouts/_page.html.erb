@@ -13,7 +13,11 @@
     <div class="wrapper">
       <%= render 'layouts/navbar' %>
 
-      <%= render 'layouts/sidebar' %>
+      <% if current_user.is_admin == true %>
+        <%= render 'layouts/sidebar_admin' %>
+      <% else %>
+        <%= render 'layouts/sidebar_user' %>
+      <% end %>
 
       <main role="main" class="container">
         <%= render 'layouts/content' %>
