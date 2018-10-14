@@ -2,19 +2,10 @@
 <nav class="sidebar">
   <ul class="list-unstyled components">
     <li>
-      <a href="" routerLinkActive="sidebar-active">
-        <i class="fa fa-home menu-icon" aria-hidden="true"></i>
-        Home
-      </a>
+      <%= link_to '<i class="fa fa-home menu-icon" aria-hidden="true"></i> Home'.html_safe, flags_path %>
     </li>
     <li>
       <%= link_to '<i class="fa fa-flag menu-icon" aria-hidden="true"></i> Register Flag'.html_safe, new_flag_path %>
-    </li>
-    <li>
-      <a href="">
-        <i class="fa fa-bar-chart menu-icon" aria-hidden="true"></i>
-        Reports
-      </a>
     </li>
     <li>
       <a href="">
