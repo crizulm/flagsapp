@@ -8,6 +8,11 @@ class FlagsController < ApplicationController
     @flag = @organization.flags.new flag_params
     @flag.token = Base64.encode64(SecureRandom.uuid)
     @report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0)
+
+    if @flag.style_function == 2
+      @flag.percentage = params[:flag][:percentage]
+    end
+
     @flag.report = @report
     @flag.save
   end
@@ -15,7 +20,7 @@ class FlagsController < ApplicationController
   private
 
   def flag_params
-    params.require(:flag).permit(:name, :active, :style_function, :percentage)
+    params.require(:flag).permit(:name, :active, :style_function, external_users_attributes: [:id, :user_id, :active])
   end
 
 end

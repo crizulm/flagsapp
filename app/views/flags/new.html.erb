@@ -2,7 +2,7 @@
 <div class="card border-light">
   <div class="card-body">
 
-    <%= form_for :flag, url: flags_path do |f| %>
+    <%= form_for @flag, url: flags_path do |f| %>
 
       <div class="form-group">
         <%= f.label :Name%>
@@ -24,10 +24,16 @@
         <%= f.number_field :percentage, class:"form-control"%>
       </div>
 
-      <div id="list" class="form-group" hidden=true>
-        <tbody class="user">
-        </tbody>
-        <%= f.label :Type%>
+      <div id="list" hidden=true>
+
+        <%= f.fields_for :external_users do |builder| %>
+          <%= render 'external_user_fields', f: builder %>
+        <% end %>
+
+        <div>
+          <%= link_to_add_association 'Add user', f, :external_users %>
+        </div>
+
       </div>
 
       <div class="d-flex flex-row-reverse bd-highlight">
