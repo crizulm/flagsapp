@@ -1,23 +1,17 @@
-<script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
-
 <h1 class="page-title">Flags</h1>
 <div class="row">
   <div class="col-xl-12">
     <div class="card border-light">
       <div class="card-body">
-        <div class="d-flex">
-          <div class="mr-auto p-2">
+        <% if current_user.is_admin == true %>
+          <div class="d-flex">
+            <div class="mr-auto p-2">
+            </div>
+            <div class="p-2">
+              <%= link_to '<i class="fa fa-plus" aria-hidden="true"></i> Add Flag'.html_safe, new_flag_path, :class => "btn btn-primary" %>
+            </div>
           </div>
-
-          <div class="p-2">
-            <%= link_to '<i class="fa fa-plus" aria-hidden="true"></i> Add Flag'.html_safe, new_flag_path, :class => "btn btn-primary" %>
-          </div>
-
-        </div>
+        <% end %>
 
         <div class="table-responsive">
           <table class="table">
@@ -34,6 +28,9 @@
                 </th>
                 <th>
                   Organization
+                </th>
+                <th>
+                  Last status update
                 </th>
                 <th class="text-center">
                   Actions
@@ -69,16 +66,21 @@
                   <td>
                     <% flag.organization.name %>
                   </td>
+                  <th>
+                    <% flag.updated_at %>
+                  </th>
                   <td class="text-center">
-                    <a href="#" class="btn btn-success mr-1 mt-1" data-toggle="tooltip" title="Hooray!">
+                    <a href="#" class="btn btn-success mr-1 mt-1">
                       <i class="fa fa-bar-chart" aria-hidden="true"></i>
                     </a>
-                    <%= link_to '<i class="fa fa-clone" aria-hidden="true"></i>'.html_safe,
-                                flag_path(flag),
-                                method: :put,
-                                data: { confirm: 'Are you sure you want to change the status?' },
-                                :class => "btn btn-danger mr-1 mt-1"
-                    %>
+                    <% if current_user.is_admin == true %>
+                      <%= link_to '<i class="fa fa-clone" aria-hidden="true"></i>'.html_safe,
+                                  flag_path(flag),
+                                  method: :put,
+                                  data: { confirm: 'Are you sure you want to change the status?' },
+                                  :class => "btn btn-danger mr-1 mt-1"
+                      %>
+                    <% end %>
                     <a href="#" class="btn btn-primary mr-1 mt-1" role="button">
                       <i class="fa fa fa-plus" aria-hidden="true"></i> Show more
                     </a>
