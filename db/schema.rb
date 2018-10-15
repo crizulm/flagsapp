@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2018_10_11_213955) do
     t.string "name", default: "", null: false
     t.string "surname", default: "", null: false
     t.boolean "is_admin", default: false, null: false
+    t.string "picture"
     t.bigint "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["organization_id"], name: "index_users_on_organization_id"
