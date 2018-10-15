@@ -67,7 +67,7 @@
                     <%= flag.organization.name %>
                   </td>
                   <td>
-                    <% flag.updated_at %>
+                    <%= flag.last_update.strftime("%m/%d/%Y %r") %>
                   </td>
                   <td class="text-center">
                     <a href="#" class="btn btn-success mr-1 mt-1">

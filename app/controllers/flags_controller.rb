@@ -20,8 +20,8 @@ class FlagsController < ApplicationController
             else
               @organization.flags.new flag_params_boolean_type
             end
-
     @flag.token = Base64.encode64(SecureRandom.uuid)
+    @flag.last_update = DateTime.current
     @report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0)
     @flag.report = @report
     if @flag.save
@@ -33,6 +33,7 @@ class FlagsController < ApplicationController
     @flag = Flag.find(params[:id])
 
     @flag.active = !@flag.active
+    @flag.last_update = DateTime.current
     @flag.save
 
     redirect_to flags_path

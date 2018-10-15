@@ -4,6 +4,7 @@ class CreateFlags < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :style_function
       t.boolean :active
+      t.datetime :last_update
       t.integer :percentage
       t.string :token
       t.belongs_to :organization, foreign_key: true
