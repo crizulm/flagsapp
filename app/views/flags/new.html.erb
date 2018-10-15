@@ -11,11 +11,12 @@
     <%= form_for @flag, url: flags_path do |f| %>
 
       <% if @flag.errors.any? %>
-        csx
-        <div class="invalid-feedback">
-          <% @flag.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
+        <div class="alert alert-danger" role="alert">
+          An error occurred:
+            <%@flag.errors.full_messages.each do |message|%>
+              <li> <%= message %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
 

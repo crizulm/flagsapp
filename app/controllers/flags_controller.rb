@@ -14,7 +14,9 @@ class FlagsController < ApplicationController
     @flag.report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0)
     @flag.token = Base64.encode64(SecureRandom.uuid)
     if @flag.save
-      return redirect_to flags_path
+      redirect_to flags_path
+    else
+      render :new
     end
   end
 
