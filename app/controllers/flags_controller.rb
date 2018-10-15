@@ -10,20 +10,9 @@ class FlagsController < ApplicationController
   end
 
   def create
-    @organization = Organization.find(current_user.organization_id)
-
-    @flag = case params[:flag][:style_function]
-            when '2'
-              @organization.flags.new flag_params_percentage_type
-            when '3'
-              @organization.flags.new flag_params_list_type
-            else
-              @organization.flags.new flag_params_boolean_type
-            end
-
+    @flag = set_flag
+    @flag.report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0)
     @flag.token = Base64.encode64(SecureRandom.uuid)
-    @report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0)
-    @flag.report = @report
     if @flag.save
       return redirect_to flags_path
     end
@@ -39,6 +28,19 @@ class FlagsController < ApplicationController
   end
 
   private
+
+  def set_flag
+    @organization = Organization.find(current_user.organization_id)
+    @flag = case params[:flag][:style_function]
+            when '2'
+              @organization.flags.new flag_params_percentage_type
+            when '3'
+              @organization.flags.new flag_params_list_type
+            else
+              @organization.flags.new flag_params_boolean_type
+            end
+    @flag
+  end
 
   def flag_params_boolean_type
     @params = params.require(:flag).permit(:name, :active, :style_function)
