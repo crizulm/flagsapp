@@ -4,6 +4,15 @@
 
     <%= form_for @flag, url: flags_path do |f| %>
 
+      <% if @flag.errors.any? %>
+        csx
+        <div class="invalid-feedback">
+          <% @flag.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </div>
+      <% end %>
+
       <div class="form-group">
         <%= f.label :Name%>
         <%= f.text_field :name, class:"form-control"%>
