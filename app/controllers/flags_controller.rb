@@ -29,7 +29,7 @@ class FlagsController < ApplicationController
     end
   end
 
-  def update
+  def change
     @flag = Flag.find(params[:id])
 
     @flag.active = !@flag.active
