@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_request: 1
+  true_answer: 1
+  false_answer: 1
+  total_time: 1
+  flag: one
+
+two:
+  total_request: 1
+  true_answer: 1
+  false_answer: 1
+  total_time: 1
+  flag: two

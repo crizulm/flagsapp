@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 1
+  active: false
+  percentage: 1
+  token: MyString
+  organizatios: one
+
+two:
+  name: MyString
+  type: 1
+  active: false
+  percentage: 1
+  token: MyString
+  organizatios: two

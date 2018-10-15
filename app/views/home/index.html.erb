@@ -1,6 +1,73 @@
-<h1 class="page-title">Home#index</h1>
-<div class="card border-light">
-  <div class="card-body">
-    <p>Find me in app/views/home/index.html.erb</p>
+<h1 class="page-title">Home</h1>
+
+<div class="row">
+
+  <div class="col-sm">
+    <div class="card border-light h-100">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Type
+              </th>
+              <th>
+                Status
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @flags.each do |flag| %>
+              <tr>
+                <td>
+                  <strong><%= flag.name %></strong>
+                </td>
+                <td>
+                  <% if flag.style_function == 1 %>
+                    Boolean
+                  <% elsif flag.style_function == 2 %>
+                    Porcentage
+                  <% elsif flag.style_function == 3 %>
+                    List
+                  <% end %>
+                </td>
+                <td>
+                  <% if flag.active == true %>
+                      <span class="badge badge-success">
+                        Active
+                      </span>
+                  <% else %>
+                      <span class="badge badge-danger">
+                        Not active
+                      </span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <%= link_to 'Go to Flag Manager <span>&#62;</span>'.html_safe, flags_path, :class => "text-muted" %>
+      </div>
+    </div>
   </div>
+
+
+  <div class="col-sm mt-10">
+    <div class="card border-light h-100">
+      <div class="card-body">
+
+        <div class="text-center">
+          <img class="img-fluid" src="./assets/img/dashboard-image.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
