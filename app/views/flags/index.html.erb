@@ -18,6 +18,9 @@
             <thead>
               <tr>
                 <th>
+                  #
+                </th>
+                <th>
                   Name
                 </th>
                 <th>
@@ -41,7 +44,10 @@
               <% @flags.each do |flag| %>
                 <tr>
                   <td>
-                    <strong><%= flag.name %></strong>
+                    <strong><%= flag.id %></strong>
+                  </td>
+                  <td>
+                    <%= flag.name %>
                   </td>
                   <td>
                     <% if flag.style_function == 1 %>
@@ -77,6 +83,14 @@
                       <%= link_to '<i class="fa fa-clone" aria-hidden="true"></i>'.html_safe,
                                   change_status_flag_path(flag),
                                   method: :put,
+                                  :class => "btn btn-warning mr-1 mt-1"
+                      %>
+                    <% end %>
+                    <% if current_user.is_admin == true %>
+                      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
+                                  flag_path(flag),
+                                  method: :delete,
+                                  data: { confirm: 'Are you sure?' },
                                   :class => "btn btn-danger mr-1 mt-1"
                       %>
                     <% end %>

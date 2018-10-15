@@ -6,13 +6,14 @@ class FlagsController < ApplicationController
   end
 
   def index
-    @flags = Flag.where(organization_id: current_user.organization_id).includes(:organization)
+    @flags = Flag.where(organization_id: current_user.organization_id, is_deleted: false).includes(:organization)
   end
 
   def create
     @flag = set_flag
     @flag.report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0)
     @flag.token = Base64.encode64(SecureRandom.uuid)
+    @flag.is_deleted = false
     @flag.last_update = DateTime.current
     if @flag.save
       return redirect_to flags_path
@@ -24,6 +25,14 @@ class FlagsController < ApplicationController
 
     @flag.active = !@flag.active
     @flag.last_update = DateTime.current
+    @flag.save
+
+    redirect_to flags_path
+  end
+
+  def destroy
+    @flag = Flag.find(params[:id])
+    @flag.is_deleted = true
     @flag.save
 
     redirect_to flags_path

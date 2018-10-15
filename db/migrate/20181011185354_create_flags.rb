@@ -3,8 +3,9 @@ class CreateFlags < ActiveRecord::Migration[5.2]
     create_table :flags do |t|
       t.string :name
       t.integer :style_function
-      t.boolean :active
+      t.boolean :active, default: true
       t.datetime :last_update
+      t.boolean :is_deleted, default: false
       t.integer :percentage
       t.string :token
       t.belongs_to :organization, foreign_key: true
