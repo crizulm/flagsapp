@@ -43,7 +43,6 @@
             <%= f.fields_for :external_users do |builder| %>
               <%= render 'external_user_fields', f: builder %>
             <% end %>
-
             <div>
               <%= link_to_add_association  '<i class="fa fa-plus" aria-hidden="true"></i> Add user'.html_safe, f, :external_users %>
             </div>
