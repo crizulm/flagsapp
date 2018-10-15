@@ -27,7 +27,9 @@ ActiveRecord::Schema.define(version: 2018_10_11_213955) do
   create_table "flags", force: :cascade do |t|
     t.string "name"
     t.integer "style_function"
-    t.boolean "active"
+    t.boolean "active", default: true
+    t.datetime "last_update"
+    t.boolean "is_deleted", default: false
     t.integer "percentage"
     t.string "token"
     t.bigint "organization_id"
