@@ -50,6 +50,10 @@ gem "font-awesome-rails"
 # Pictures
 gem 'carrierwave'
 gem 'mini_magick'
+# User Authentication with Facebook
+gem 'omniauth-facebook'
+# Development ENV Variables
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
