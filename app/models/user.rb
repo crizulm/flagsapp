@@ -15,8 +15,9 @@ class User < ApplicationRecord
       user = User.new
       user.provider = auth.provider
       user.uid = auth.uid
+      user.name = auth.info.first_name
+      user.surname = auth.info.last_name
       user.email = auth.info.email
-      user.picture = auth.info.picture
       user.password = Devise.friendly_token[0,20]
       user.is_admin = true
       organization = Organization.new
