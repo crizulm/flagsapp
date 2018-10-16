@@ -7,6 +7,9 @@ class User < ApplicationRecord
   mount_uploader :picture, UserPictureUploader
   belongs_to :organization
 
+  validates :name, presence: true
+  validates :surname, presence: true
+
   def self.create_from_omniauth(auth)
     auth_credential = where(provider: auth.provider, uid: auth.uid).first
     if !auth_credential.nil?
