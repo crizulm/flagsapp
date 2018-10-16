@@ -45,9 +45,15 @@ gem 'devise', git: 'git://github.com/plataformatec/devise.git'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
 # Font Awesome
 gem "font-awesome-rails"
+# Pictures
+gem 'carrierwave'
+gem 'mini_magick'
+# User Authentication with Facebook
+gem 'omniauth-facebook'
+# Development ENV Variables
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

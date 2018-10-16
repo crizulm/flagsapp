@@ -3,6 +3,7 @@ class AddExtraInformationToUsers < ActiveRecord::Migration[5.2]
     add_column :users, :name, :string, null: false, default: ''
     add_column :users, :surname, :string, null: false, default: ''
     add_column :users, :is_admin, :boolean, null: false, default: false
+    add_column :users, :picture, :string
     add_reference :users, :organization
   end
 end
