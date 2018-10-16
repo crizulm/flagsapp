@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_213955) do
+ActiveRecord::Schema.define(version: 2018_10_16_003713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,9 @@ ActiveRecord::Schema.define(version: 2018_10_11_213955) do
   create_table "flags", force: :cascade do |t|
     t.string "name"
     t.integer "style_function"
-    t.boolean "active"
+    t.boolean "active", default: true
+    t.datetime "last_update"
+    t.boolean "is_deleted", default: false
     t.integer "percentage"
     t.string "token"
     t.bigint "organization_id"
@@ -61,7 +63,10 @@ ActiveRecord::Schema.define(version: 2018_10_11_213955) do
     t.string "name", default: "", null: false
     t.string "surname", default: "", null: false
     t.boolean "is_admin", default: false, null: false
+    t.string "picture"
     t.bigint "organization_id"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["organization_id"], name: "index_users_on_organization_id"
   end

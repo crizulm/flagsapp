@@ -10,6 +10,16 @@
 
     <%= form_for @flag, url: flags_path do |f| %>
 
+      <% if @flag.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          An error occurred:
+            <%@flag.errors.full_messages.each do |message|%>
+              <li> <%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <div class="row">
         <div class="col">
           <div class="form-group">
@@ -34,7 +44,6 @@
             <%= f.fields_for :external_users do |builder| %>
               <%= render 'external_user_fields', f: builder %>
             <% end %>
-
             <div>
               <%= link_to_add_association  '<i class="fa fa-plus" aria-hidden="true"></i> Add user'.html_safe, f, :external_users %>
             </div>

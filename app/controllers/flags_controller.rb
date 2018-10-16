@@ -6,27 +6,35 @@ class FlagsController < ApplicationController
   end
 
   def index
-   @flags = Flag.where(organization_id: current_user.organization_id).includes(:organization)
+    @flags = Flag.where(organization_id: current_user.organization_id, is_deleted: false).includes(:organization)
   end
 
   def create
-    @organization = Organization.find(current_user.organization_id)
-    @flag = @organization.flags.new flag_params
+    @flag = set_flag
+    @flag.report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0)
     @flag.token = Base64.encode64(SecureRandom.uuid)
-    @report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0)
-
-    if @flag.style_function == 2
-      @flag.percentage = params[:flag][:percentage]
+    @flag.is_deleted = false
+    @flag.last_update = DateTime.current
+    if @flag.save
+      redirect_to flags_path
+    else
+      render :new
     end
-
-    @flag.report = @report
-    @flag.save
   end
 
-  def update
+  def change
     @flag = Flag.find(params[:id])
 
     @flag.active = !@flag.active
+    @flag.last_update = DateTime.current
+    @flag.save
+
+    redirect_to flags_path
+  end
+
+  def destroy
+    @flag = Flag.find(params[:id])
+    @flag.is_deleted = true
     @flag.save
 
     redirect_to flags_path
@@ -34,8 +42,28 @@ class FlagsController < ApplicationController
 
   private
 
-  def flag_params
-    params.require(:flag).permit(:name, :active, :style_function, external_users_attributes: [:id, :user_id, :active])
+  def set_flag
+    @organization = Organization.find(current_user.organization_id)
+    @flag = case params[:flag][:style_function]
+            when '2'
+              @organization.flags.new flag_params_percentage_type
+            when '3'
+              @organization.flags.new flag_params_list_type
+            else
+              @organization.flags.new flag_params_boolean_type
+            end
+    @flag
   end
 
+  def flag_params_boolean_type
+    @params = params.require(:flag).permit(:name, :active, :style_function)
+  end
+
+  def flag_params_percentage_type
+    @params = params.require(:flag).permit(:name, :active, :style_function, :percentage)
+  end
+
+  def flag_params_list_type
+    @params = params.require(:flag).permit(:name, :active, :style_function, external_users_attributes: [:id, :user_id, :active])
+  end
 end
