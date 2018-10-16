@@ -9,10 +9,25 @@ class FlagsController < ApplicationController
     @flags = Flag.where(organization_id: current_user.organization_id, is_deleted: false).includes(:organization)
   end
 
+  def show
+    @external_id = request.headers['client-id']
+    @flag = Flag.where(auth_token: params[:id])
+
+    @result = case @flag.style_function
+              when '2'
+                evaluate_percentage_flag(@external_id, @flag)
+              when '3'
+                evaluate_list_flag(@external_id, @flag)
+              else
+                evaluate_boolean_flag(@external_id, @flag)
+              end
+
+    render json: { data: @result }, status: :ok
+  end
+
   def create
     @flag = set_flag
     @flag.report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0)
-    @flag.token = Base64.encode64(SecureRandom.uuid)
     @flag.is_deleted = false
     @flag.last_update = DateTime.current
     if @flag.save
@@ -41,6 +56,20 @@ class FlagsController < ApplicationController
   end
 
   private
+
+  def evaluate_boolean_flag(external_id, flag)
+    set_report(flag)
+  end
+
+  def evaluate_percentage_flag(external_id, flag)
+    set_report(flag)
+  end
+
+  def evaluate_list_flag(external_id, flag)
+    set_report(flag)
+  end
+
+  def set_report(flag); end
 
   def set_flag
     @organization = Organization.find(current_user.organization_id)

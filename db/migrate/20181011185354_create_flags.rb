@@ -7,7 +7,7 @@ class CreateFlags < ActiveRecord::Migration[5.2]
       t.datetime :last_update
       t.boolean :is_deleted, default: false
       t.integer :percentage
-      t.string :token
+      t.string :auth_token
       t.belongs_to :organization, foreign_key: true
       t.timestamps
     end
