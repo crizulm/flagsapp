@@ -26,6 +26,7 @@ class User < ApplicationRecord
       user.organization = organization
       user.save!
     end
+    user
   end
 
   def apply_omniauth(auth)
