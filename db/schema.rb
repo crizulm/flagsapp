@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2018_10_11_213955) do
     t.datetime "last_update"
     t.boolean "is_deleted", default: false
     t.integer "percentage"
-    t.string "token"
+    t.string "auth_token"
     t.bigint "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
