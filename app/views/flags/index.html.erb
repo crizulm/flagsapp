@@ -3,15 +3,16 @@
   <div class="col-xl-12">
     <div class="card border-light">
       <div class="card-body">
-        <% if current_user.is_admin == true %>
           <div class="d-flex">
             <div class="mr-auto p-2">
+
             </div>
-            <div class="p-2">
-              <%= link_to '<i class="fa fa-plus" aria-hidden="true"></i> Add Flag'.html_safe, new_flag_path, :class => "btn btn-primary" %>
-            </div>
+            <% if current_user.is_admin == true %>
+              <div class="p-2">
+                <%= link_to '<i class="fa fa-plus" aria-hidden="true"></i> Add Flag'.html_safe, new_flag_path, :class => "btn btn-primary" %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
 
         <div class="table-responsive">
           <table class="table">

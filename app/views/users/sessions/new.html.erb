@@ -35,11 +35,14 @@
             <% end %>
           </fieldset>
 
-          <%= render "devise/shared/links" %>
+          <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+          <%- resource_class.omniauth_providers.each do |provider| %>
+            <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+          <% end -%>
 
         </div>
         <div class="footer">
-          <label>Please feel free to give us your feedback about this tool!</label>
+          <label>FlagsApp 2018</label>
         </div>
       </div>
     </div>
