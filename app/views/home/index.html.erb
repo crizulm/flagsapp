@@ -83,7 +83,11 @@
             <% @users.each do |user| %>
               <tr>
                 <td>
-                  <%= image_tag user.picture.thumb.url, :class => "rounded-circle pictureThumb" %>
+                  <% if current_user.image %>
+                    <%= image_tag current_user.image, :class => "rounded-circle pictureThumb" %>
+                  <% else %>
+                    <%= image_tag current_user.picture.thumb.url, :class => "rounded-circle pictureThumb" %>
+                  <% end %>
                   <strong><%= user.name %> <%= user.surname %></strong>
                 </td>
                 <td>
