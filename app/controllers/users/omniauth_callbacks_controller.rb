@@ -8,10 +8,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def twitter
   # end
 
-  def facebook
+  def google_oauth2
     if current_user.present?
       current_user.apply_omniauth(omniauth_params)
-      redirect_to edit_user_registration_path, notice: "Facebook Account Linked!"
+      redirect_to edit_user_registration_path, notice: "Google Account Linked!"
     else
       @user = User.create_from_omniauth(omniauth_params)
       sign_in_and_redirect @user
