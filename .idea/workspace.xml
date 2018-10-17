@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ebe98a0-b458-471b-8326-edd843abe732" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/flags/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/flags_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/flags_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/flags/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/flags/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/report.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/report.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20181011185746_create_reports.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20181011185746_create_reports.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,25 +94,25 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="erb" value="8" />
-          <entry key="rb" value="54" />
+          <entry key="rb" value="56" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="RHTML" value="8" />
-          <entry key="Ruby" value="54" />
+          <entry key="Ruby" value="56" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="erb" value="1070" />
-          <entry key="rb" value="1903" />
+          <entry key="rb" value="2201" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="RHTML" value="1070" />
-          <entry key="Ruby" value="1903" />
+          <entry key="Ruby" value="2201" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -130,38 +129,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/flags_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+            <state relative-caret-position="315">
+              <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/flags/index.html.erb">
+        <entry file="file://$PROJECT_DIR$/app/models/organization.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="751">
-              <caret line="99" column="22" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
+            <state relative-caret-position="30">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/flags/new.html.erb">
+        <entry file="file://$PROJECT_DIR$/app/models/flag.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="87" />
+            <state relative-caret-position="45">
+              <caret line="3" column="26" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/flags/show.html.erb">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/report.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20181011185746_create_reports.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -187,13 +195,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/layouts/_sidebar.html.erb" />
         <option value="$PROJECT_DIR$/app/views/flags/index.html.erb.html" />
         <option value="$PROJECT_DIR$/app/views/layouts/_sidebar_user.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/views/flags/_external_user_fields.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20181011185354_create_flags.rb" />
-        <option value="$PROJECT_DIR$/app/models/report.rb" />
         <option value="$PROJECT_DIR$/app/views/flags/new.html.erb" />
         <option value="$PROJECT_DIR$/app/models/external_user.rb" />
         <option value="$PROJECT_DIR$/app/models/flag.rb" />
@@ -235,9 +241,11 @@
         <option value="$PROJECT_DIR$/app/controllers/reports_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/reports/index.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/flags_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/flags/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/flags/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/report.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20181011185746_create_reports.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/flags_controller.rb" />
       </list>
     </option>
   </component>
@@ -265,55 +273,67 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="flags" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="reports" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+              <item name="migrate" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="RailsProjectView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -477,7 +497,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111590000" />
+    <option name="totallyTimeSpent" value="114212000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -489,10 +509,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1131" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="954" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49948928" visible="true" weight="0.24920128" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49948928" visible="true" weight="0.25274727" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50051075" side_tool="true" weight="0.15506716" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -521,9 +541,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/application.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/signup.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -542,13 +559,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20181016235820_create_invites.rb" />
-    <entry file="file://$PROJECT_DIR$/app/models/organization.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/invite_controller.rb" />
     <entry file="file://$PROJECT_DIR$/config/initializers/setup_mail.rb" />
     <entry file="file://$PROJECT_DIR$/db/migrate/20181011185354_create_flags.rb">
@@ -577,8 +587,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/flag.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="33" />
+        <state relative-caret-position="45">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -689,13 +699,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/config/application.yml" />
     <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -762,16 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/report.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="64" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/reports_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -800,13 +794,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/flags_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/flags/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="751">
@@ -825,6 +812,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="64" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20181011185746_create_reports.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/report.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/organization.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/flags_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>

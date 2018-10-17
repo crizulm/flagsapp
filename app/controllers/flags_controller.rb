@@ -18,6 +18,7 @@ class FlagsController < ApplicationController
     @flag = Flag.where(auth_token: params[:id]).first
     return render json: { data: 'Error flag not found' }, status: 400 if @flag.nil?
 
+    @start_time = Time.now
     @result = case @flag.style_flag
               when 2
                 evaluate_percentage_flag(@external_id, @flag)
@@ -26,8 +27,9 @@ class FlagsController < ApplicationController
               else
                 evaluate_boolean_flag(@flag)
               end
-
+    @end_time = Time.now
     render json: { data: @result }, status: :ok
+    set_time(@flag, (@end_time - @start_time))
   end
 
   def create
@@ -149,4 +151,11 @@ class FlagsController < ApplicationController
   def flag_params_list_type
     @params = params.require(:flag).permit(:name, :active, :style_flag, external_users_attributes: [:id, :user_id, :active])
   end
+
+  def set_time(flag, time)
+    @report = Report.where(flag_id: flag.id).first
+    @report.total_time = @report.total_time + time
+    @report.save
+  end
+
 end
