@@ -50,8 +50,6 @@ gem "font-awesome-rails"
 # Pictures
 gem 'carrierwave'
 gem 'mini_magick'
-# User Authentication with Facebook
-gem 'omniauth-facebook'
 # Google Authenticacation
 gem 'omniauth-google-oauth2'
 # Development ENV Variables
