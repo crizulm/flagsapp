@@ -22,18 +22,18 @@
 
             <div class="form-group">
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control"%>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "someone@example.com", class:"form-control"%>
             </div>
             <div class="form-group">
               <%= f.label :password %>
               <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %><br />
-              <%= f.password_field :password, autocomplete: "new-password", class:"form-control"%>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "********", class:"form-control"%>
             </div>
             <div class="form-group">
               <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control"%>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "********", class:"form-control"%>
             </div>
             <div class="form-group">
               <%= f.label :picture %><br />
@@ -43,18 +43,18 @@
           <div class="col">
             <div class="form-group">
               <%= f.label :name %><br />
-              <%= f.text_field :name, autocomplete: "name", class:"form-control"%>
+              <%= f.text_field :name, autocomplete: "name", placeholder: "Mark", class:"form-control"%>
             </div>
 
             <div class="form-group">
               <%= f.label :surname %><br />
-              <%= f.text_field :surname, autocomplete: "surname", class:"form-control"%>
+              <%= f.text_field :surname, autocomplete: "surname", placeholder: "Smith", class:"form-control"%>
             </div>
 
             <% if @token == nil %>
             <div class="form-group">
               <%= label_tag :organization %><br />
-              <%= text_field_tag :organization_name, nil, class: "form-control", :required => true %>
+              <%= text_field_tag :organization_name, nil, class: "form-control", placeholder: "Flags Organization", :required => true %>
             </div>
             <% end %>
           </div>
