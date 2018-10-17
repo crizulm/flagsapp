@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_000121) do
     t.integer "false_answer"
     t.integer "new_request"
     t.integer "new_true_answer"
-    t.integer "total_time"
+    t.decimal "total_time"
     t.bigint "flag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
