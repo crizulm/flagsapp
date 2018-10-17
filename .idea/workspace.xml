@@ -2,7 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ebe98a0-b458-471b-8326-edd843abe732" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/images/login-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/images/login-logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/login.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/sidebar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/reports_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/reports_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/home/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_content.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_content.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_navbar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_navbar.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_sidebar_admin.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_sidebar_admin.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_sidebar_user.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_sidebar_user.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/reports/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/reports/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/sessions/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/sessions/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/devise.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20181016003713_add_oauth_fields_to_users.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20181016003713_add_oauth_fields_to_users.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,10 +147,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/home/index.html.erb">
+        <entry file="file://$PROJECT_DIR$/app/controllers/reports_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="84" column="20" lean-forward="true" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
+            <state relative-caret-position="150">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -189,7 +209,6 @@
         <option value="$PROJECT_DIR$/db/migrate/20181011185746_create_reports.rb" />
         <option value="$PROJECT_DIR$/app/controllers/flags_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/reports_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/_content.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/login.scss" />
@@ -206,6 +225,7 @@
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/_navbar.html.erb" />
         <option value="$PROJECT_DIR$/app/views/home/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/reports_controller.rb" />
       </list>
     </option>
   </component>
@@ -239,26 +259,24 @@
         <subPane>
           <expand>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="flagsApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flagsApp" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="Arq" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arq" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -427,7 +445,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125595000" />
+    <option name="totallyTimeSpent" value="125625000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -439,10 +457,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1131" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="954" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49948928" visible="true" weight="0.24920128" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49948928" visible="true" weight="0.25885227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50051075" side_tool="true" weight="0.15506716" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -684,8 +702,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/reports_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -696,13 +714,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/config/application.yml" />
     <entry file="file://$PROJECT_DIR$/app/controllers/invites_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">

@@ -7,6 +7,5 @@ Rails.application.routes.draw do
   put 'flags/:id/status', to: 'flags#change', as: 'change_status_flag'
   get 'flags/:id/evaluate', to: 'flags#evaluate', as: 'evaluate_flag'
   get 'home/index'
-
   root to: "home#index"
 end
