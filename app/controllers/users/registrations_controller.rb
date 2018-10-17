@@ -22,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.is_admin = false
       else
         organization = Organization.new
-        organization.name = 'Organization ' + resource.email
+        organization.name = params[:organization_name]
         organization.save
         resource.organization = organization
         resource.is_admin = true
@@ -59,7 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer().permit(:sign_up, keys: [:name, :surname, :picture, :invite_token])
+    devise_parameter_sanitizer().permit(:sign_up, keys: [:name, :surname, :picture, :invite_token, :organization_name])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

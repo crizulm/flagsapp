@@ -6,12 +6,12 @@ class Flag < ApplicationRecord
   has_secure_token :auth_token
 
   validates :name, presence: true
-  validates :style_function, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3 }
+  validates :style_flag, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3 }
   validates_associated :external_users
   validate :percentage_validation
 
   def percentage_validation
-    if style_function == 2
+    if style_flag == 2
       if percentage.blank? || percentage < 1
         errors.add(:percentage, "percentage must be greater or equals to 1")
       end

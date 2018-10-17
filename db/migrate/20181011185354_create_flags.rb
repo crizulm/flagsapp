@@ -2,7 +2,7 @@ class CreateFlags < ActiveRecord::Migration[5.2]
   def change
     create_table :flags do |t|
       t.string :name
-      t.integer :style_function
+      t.integer :style_flag
       t.boolean :active, default: true
       t.datetime :last_update
       t.boolean :is_deleted, default: false

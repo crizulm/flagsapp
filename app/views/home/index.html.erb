@@ -28,11 +28,11 @@
                   <strong><%= flag.name %></strong>
                 </td>
                 <td>
-                  <% if flag.style_function == 1 %>
+                  <% if flag.style_flag == 1 %>
                     Boolean
-                  <% elsif flag.style_function == 2 %>
+                  <% elsif flag.style_flag == 2 %>
                     Porcentage
-                  <% elsif flag.style_function == 3 %>
+                  <% elsif flag.style_flag == 3 %>
                     List
                   <% end %>
                 </td>
@@ -75,9 +75,6 @@
                 Email
               </th>
               <th>
-                Picture
-              </th>
-              <th>
                 Admin
               </th>
             </tr>
@@ -86,13 +83,11 @@
             <% @users.each do |user| %>
               <tr>
                 <td>
+                  <%= image_tag user.picture.thumb.url, :class => "rounded-circle pictureThumb" %>
                   <strong><%= user.name %> <%= user.surname %></strong>
                 </td>
                 <td>
                   <%= user.email %>
-                </td>
-                <td>
-                  <%= image_tag user.picture.thumb.url, :class => "rounded-circle pictureThumb" %>
                 </td>
                 <td>
                   <% if user.is_admin == true %>
