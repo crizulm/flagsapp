@@ -1,12 +1,111 @@
-<h1 class="page-title">Flag </h1>
+<%= stylesheet_link_tag 'flags' %>
+<h1 class="page-title">Flag <%= @flag.name %></h1>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to 'Flag Manager', flags_path %></li>
-    <li class="breadcrumb-item active" aria-current="page">Flag </li>
+    <li class="breadcrumb-item active" aria-current="page">Flag <%= @flag.name %></li>
   </ol>
 </nav>
 <div class="card border-light">
   <div class="card-body">
-
+    <div class="row">
+      <div class="col">
+        <div class="info-group">
+          <label class="label-info">Name</label>
+          <div class="info">
+            <%= @flag.name %>
+          </div>
+        </div>
+        <div class="info-group">
+          <label class="label-info">Organization</label>
+          <div class="info">
+            <%= @flag.organization.name %>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="info-group">
+          <label class="label-info">Type:</label>
+          <div class="info">
+            <% if @flag.style_flag == 1 %>
+              Boolean
+            <% elsif @flag.style_flag == 2 %>
+              Porcentage
+            <% elsif @flag.style_flag == 3 %>
+              List
+            <% end %>
+          </div>
+        </div>
+        <div class="info-group">
+          <label class="label-info">Status</label>
+          <div class="info">
+            <% if @flag.active == true %>
+              <span class="badge badge-success">
+                Active
+              </span>
+            <% else %>
+              <span class="badge badge-danger">
+                Not active
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="info-group">
+          <label class="label-info">Token:</label>
+          <div class="info">
+            <%= @flag.auth_token %>
+          </div>
+        </div>
+        <div class="info-group">
+          <label class="label-info">Last update:</label>
+          <div class="info">
+            <%= @flag.last_update.strftime("%m/%d/%Y %r") %>
+          </div>
+        </div>
+      </div>
+      <% if @flag.style_flag == 2 %>
+        <div class="col">
+          <div class="info-group">
+            <label class="label-info">Percentage:</label>
+            <div class="info">
+              <%= @flag.percentage %> %
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% if @flag.style_flag == 3 %>
+      <br>
+      <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-5">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th class="text-center">
+                  User ID
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @external_users.each do |user| %>
+                <tr>
+                  <td class="text-center">
+                    <%= user.user_id %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col">
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

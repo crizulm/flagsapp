@@ -1,5 +1,5 @@
 class FlagsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :index, :create, :change]
+  before_action :authenticate_user!, only: [:new, :index, :show, :create, :change, :destroy]
 
   def new
     @flag = Flag.new
@@ -10,7 +10,8 @@ class FlagsController < ApplicationController
   end
 
   def show
-
+    @flag = Flag.includes(:organization).find(params[:id])
+    @external_users = ExternalUser.where(flag_id: params[:id])
   end
 
   def evaluate

@@ -6,6 +6,7 @@ Rails.application.config.assets.precompile += %w( navbar.scss )
 Rails.application.config.assets.precompile += %w( sidebar.scss )
 Rails.application.config.assets.precompile += %w( login.scss )
 Rails.application.config.assets.precompile += %w( signup.scss )
+Rails.application.config.assets.precompile += %w( flags.scss )
 
 # Add additional assets to the asset load path.
 # Rails.application.config.assets.paths << Emoji.images_path
