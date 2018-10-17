@@ -6,6 +6,7 @@
     <div class="card border-light h-100">
       <div class="card-body">
         <div class="table-responsive">
+          <h5>Flags</h5>
           <table class="table">
             <thead>
             <tr>
@@ -62,9 +63,48 @@
   <div class="col-sm mt-10">
     <div class="card border-light h-100">
       <div class="card-body">
-
-        <div class="text-center">
-          <img class="img-fluid" src="./assets/img/dashboard-image.png">
+        <h5>Organization Users</h5>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Email
+              </th>
+              <th>
+                Picture
+              </th>
+              <th>
+                Admin
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <strong><%= user.name %> <%= user.surname %></strong>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+                <td>
+                  <%= image_tag user.picture.thumb.url, :class => "rounded-circle pictureThumb" %>
+                </td>
+                <td>
+                  <% if user.is_admin == true %>
+                      <span class="badge badge-success">
+                        Yes
+                      </span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
