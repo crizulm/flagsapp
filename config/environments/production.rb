@@ -10,6 +10,9 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
+  # OmniAuth
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'email', info_fields: 'email, first_name, last_name'
+
   # Mailer config.
   config.action_mailer.default_url_options = { host: ENV['URL'], port: ENV['PORT'] }
   config.action_mailer.delivery_method = :smtp
