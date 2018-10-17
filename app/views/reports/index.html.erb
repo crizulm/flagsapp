@@ -22,13 +22,19 @@
               <th>
                 Type
               </th>
-              <th>
-                Total request
+              <th class="text-center">
+                Total
               </th>
-              <th>
+              <th class="text-center">
+                Postive
+              </th>
+              <th class="text-center">
+                Negative
+              </th>
+              <th class="text-center">
                 Positive/Negative Rate
               </th>
-              <th>
+              <th class="text-center">
                 Average Response Time
               </th>
               <th class="text-center">
@@ -54,14 +60,38 @@
                     List
                   <% end %>
                 </td>
-                <td>
+                <td class="text-center">
                   <%= report.total_request %>
                 </td>
-                <td>
-                  <%= report.true_answer/report.false_answer %>
+                <td class="text-center">
+                  <%= report.true_answer %>
+                  <% if report.total_request == 0 %>
+                    (0 %)
+                  <% else %>
+                    (<%= (report.true_answer * 100) / report.total_request %> %)
+                  <% end %>
                 </td>
-                <td>
-                  <%= report.total_time/report.total_request %>
+                <td class="text-center">
+                  <%= report.false_answer %>
+                  <% if report.total_request == 0 %>
+                    (0 %)
+                  <% else %>
+                    (<%= (report.false_answer * 100) / report.total_request %> %)
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if report.false_answer == 0 %>
+                    0.0
+                  <% else %>
+                    <%= report.true_answer.to_f/report.false_answer.to_f %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if report.total_request == 0 %>
+                    0.0
+                  <% else %>
+                    <%= report.total_time.to_f/report.total_request %>
+                  <% end %>
                 </td>
                 <td class="text-center">
                   <% if report.flag.is_deleted == true %>
