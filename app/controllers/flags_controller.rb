@@ -1,5 +1,6 @@
 class FlagsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :index, :show, :create, :change, :destroy]
+  before_action :authenticate_user!, only: [:index, :show]
+  before_action :authenticate_admin!, only: [:new, :create, :change, :destroy]
 
   def new
     @flag = Flag.new
