@@ -35,6 +35,10 @@
               <%= f.label :password_confirmation %><br />
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control"%>
             </div>
+            <div class="form-group">
+              <%= f.label :picture %><br />
+              <%= f.file_field :picture %>
+            </div>
           </div>
           <div class="col">
             <div class="form-group">
@@ -47,10 +51,12 @@
               <%= f.text_field :surname, autocomplete: "surname", class:"form-control"%>
             </div>
 
+            <% if @token == nil %>
             <div class="form-group">
-              <%= f.label :picture %><br />
-              <%= f.file_field :picture %>
+              <%= label_tag :organization %><br />
+              <%= text_field_tag :organization_name, nil, class: "form-control", :required => true %>
             </div>
+            <% end %>
           </div>
         </div>
 
