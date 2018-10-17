@@ -81,7 +81,7 @@
                 </td>
                 <td class="text-center">
                   <% if report.false_answer == 0 %>
-                    0.0
+                    <%= report.true_answer %>
                   <% else %>
                     <%= report.true_answer.to_f/report.false_answer.to_f %>
                   <% end %>
