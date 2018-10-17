@@ -8,6 +8,9 @@
       <%= active_link_to '<i class="fa fa-flag menu-icon" aria-hidden="true"></i> Flag Manager'.html_safe, flags_path, active: :inclusive %>
     </li>
     <li>
+      <%= active_link_to '<i class="fa fa-bar-chart menu-icon" aria-hidden="true"></i> Reports'.html_safe, reports_path, active: :inclusive %>
+    </li>
+    <li>
       <%= active_link_to '<i class="fa fa-envelope menu-icon" aria-hidden="true"></i> Send Invitation'.html_safe, new_invite_path, active: :inclusive %>
     </li>
   </ul>
