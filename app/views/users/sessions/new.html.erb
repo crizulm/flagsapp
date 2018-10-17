@@ -10,6 +10,7 @@
 
           <fieldset class="TableLike small-12">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <p><%= alert %></p>
 
               <% if resource.errors.any? %>
                 <div class="alert alert-danger field" role="alert">
