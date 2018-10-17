@@ -12,7 +12,11 @@ Devise.setup do |config|
 
    # OmniAuth Facebook
    config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'email', info_fields: 'email, first_name, last_name'
-   
+
+   #OmniAuth Google
+   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
+       scope: "email"
+   }
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
