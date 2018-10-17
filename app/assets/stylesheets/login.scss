@@ -16,12 +16,15 @@ div.login-background {
   padding: 0;
 }
 
-.logo {
-  background-image: asset-data-url("logo.png");
-  background-repeat: no-repeat;
+.logo-div {
   margin-top: 3.33333rem;
   margin-left: -14px;
-  padding-bottom: 125px;
+  padding-bottom: 50px;
+}
+
+.logo{
+  width: 216px;
+  height: 60px;
 }
 
 .login-box {
