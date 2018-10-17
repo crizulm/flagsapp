@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_10_16_003713) do
 
   create_table "flags", force: :cascade do |t|
     t.string "name"
-    t.integer "style_function"
+    t.integer "style_flag"
     t.boolean "active", default: true
     t.datetime "last_update"
     t.boolean "is_deleted", default: false
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 2018_10_16_003713) do
     t.integer "total_request"
     t.integer "true_answer"
     t.integer "false_answer"
+    t.integer "new_request"
+    t.integer "new_true_answer"
     t.integer "total_time"
     t.bigint "flag_id"
     t.datetime "created_at", null: false
