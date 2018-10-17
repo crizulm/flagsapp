@@ -7,11 +7,12 @@
             <div class="mr-auto p-2">
 
             </div>
-            <% if current_user.is_admin == true %>
               <div class="p-2">
+                <%= link_to '<i class="fa fa-bar-chart" aria-hidden="true"></i> View Reports'.html_safe, reports_path, :class => "btn btn-success" %>
+                <% if current_user.is_admin == true %>
                 <%= link_to '<i class="fa fa-plus" aria-hidden="true"></i> Add Flag'.html_safe, new_flag_path, :class => "btn btn-primary" %>
+                <% end %>
               </div>
-            <% end %>
           </div>
 
         <div class="table-responsive">
@@ -77,9 +78,6 @@
                     <%= flag.last_update.strftime("%m/%d/%Y %r") %>
                   </td>
                   <td class="text-center">
-                    <a href="#" class="btn btn-success mr-1 mt-1">
-                      <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                    </a>
                     <% if current_user.is_admin == true %>
                       <%= link_to '<i class="fa fa-clone" aria-hidden="true"></i>'.html_safe,
                                   change_status_flag_path(flag),
