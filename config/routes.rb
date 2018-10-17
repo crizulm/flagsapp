@@ -8,6 +8,5 @@ Rails.application.routes.draw do
   get 'flags/:id/evaluate', to: 'flags#evaluate', as: 'evaluate_flag'
   get 'reports/:id/json', to: 'reports#reports_json'
   get 'home/index'
-
   root to: "home#index"
 end
