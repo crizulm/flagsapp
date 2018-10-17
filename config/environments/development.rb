@@ -8,10 +8,7 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-
-  # OmniAuth
-  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'email', info_fields: 'email, first_name, last_name'
-
+  
   # Mailer config.
   config.action_mailer.default_url_options = { host: ENV['URL'], port: ENV['PORT'] }
   config.action_mailer.delivery_method = :smtp
