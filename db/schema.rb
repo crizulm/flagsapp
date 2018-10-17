@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_000121) do
     t.bigint "organization_id"
     t.string "provider"
     t.string "uid"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["organization_id"], name: "index_users_on_organization_id"
   end
