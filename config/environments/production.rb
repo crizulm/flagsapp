@@ -9,6 +9,18 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
+  
+  # Mailer config.
+  config.action_mailer.default_url_options = { host: ENV['URL'], port: ENV['PORT'] }
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :user_name            => ENV['GMAIL_USERNAME'],
+      :password             => ENV['GMAIL_PASSWORD'],
+      :authentication       => "plain",
+      :enable_starttls_auto => true
+  }
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false

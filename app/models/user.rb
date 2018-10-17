@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   mount_uploader :picture, UserPictureUploader
   belongs_to :organization
+  has_many :invites
+
+  validates :name, presence: true
+  validates :surname, presence: true
 
   def self.create_from_omniauth(auth)
     auth_credential = where(provider: auth.provider, uid: auth.uid).first
@@ -26,6 +30,7 @@ class User < ApplicationRecord
       user.organization = organization
       user.save!
     end
+    user
   end
 
   def apply_omniauth(auth)
