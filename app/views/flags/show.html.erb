@@ -89,9 +89,6 @@
                 <th class="text-center">
                   User ID
                 </th>
-                <th>
-                  Status
-                </th>
               </tr>
               </thead>
               <tbody>
@@ -99,17 +96,6 @@
                 <tr>
                   <td class="text-center">
                     <%= user.user_id %>
-                  </td>
-                  <td>
-                    <% if user.active == true %>
-                          <span class="badge badge-success">
-                            Active
-                          </span>
-                    <% else %>
-                          <span class="badge badge-danger">
-                            Not active
-                          </span>
-                    <% end %>
                   </td>
                 </tr>
               <% end %>
