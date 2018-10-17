@@ -1,5 +1,5 @@
 class FlagsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :index, :create, :change]
+  before_action :authenticate_user!, only: [:new, :index, :show, :create, :change, :destroy]
 
   def new
     @flag = Flag.new
@@ -10,9 +10,15 @@ class FlagsController < ApplicationController
   end
 
   def show
+    @flag = Flag.includes(:organization).find(params[:id])
+    @external_users = ExternalUser.where(flag_id: params[:id])
+  end
+
+  def evaluate
     @external_id = request.headers['client-id']
     @flag = Flag.where(auth_token: params[:id]).first
     return render json: { data: 'Error flag not found' }, status: 400 if @flag.nil?
+
     @result = case @flag.style_flag
               when 2
                 evaluate_percentage_flag(@external_id, @flag)
@@ -81,24 +87,18 @@ class FlagsController < ApplicationController
 
   def evaluate_new_user(external_id, flag)
     @report = Report.where(flag_id: flag.id).first
-    @percentage = if @report.new_request.positive?
-                    (@report.new_true_answer * 100) / @report.new_request
-                  else
-                    0
-                  end
+    @percentage = @report.new_request.positive? ? (@report.new_true_answer * 100) / @report.new_request : 0
     @report.new_request = @report.new_request + 1
-    @return = if flag.percentage > @percentage
-                @report.new_true_answer = @report.new_true_answer + 1
-                @external_new_user = flag.external_users.new user_id: external_id, active: true
-                @external_new_user.save
-                true
-              else
-                @external_new_user = flag.external_users.new user_id: external_id, active: false
-                @external_new_user.save
-                false
-              end
+    @return = set_new_external_user(external_id, flag, flag.percentage > @percentage, @report)
     @report.save
     @return
+  end
+
+  def set_new_external_user(external_id, flag, value, report)
+    report.new_true_answer = report.new_true_answer + 1 if value
+    @external_new_user = flag.external_users.new user_id: external_id, active: value
+    @external_new_user.save
+    value
   end
 
   def evaluate_list_flag(external_id, flag)
