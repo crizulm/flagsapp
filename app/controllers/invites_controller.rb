@@ -1,4 +1,5 @@
 class InvitesController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :create]
 
   def new
     @invite = Invite.new
