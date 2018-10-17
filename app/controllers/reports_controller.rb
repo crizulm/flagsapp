@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
     @reports = Report.joins(:flag).where("flags.organization_id" => current_user.organization_id)
   end
 
-  def reports_json
+  def show
     @flag = Flag.where(auth_token: params[:id]).first
     return render json: { data: 'Error flag not found' }, status: 400 if @flag.nil?
 
@@ -15,7 +15,6 @@ class ReportsController < ApplicationController
   end
 
   private
-
   def get_json(report)
     @return = { 'Total' => report.total_request,
                 'Positive' => (report.total_request.positive? ? (report.true_answer * 100) / report.total_request : 0),
