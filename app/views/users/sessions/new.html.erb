@@ -11,10 +11,6 @@
           <label>Sign in using your credentials.</label>
 
           <fieldset class="TableLike small-12">
-            <%= link_to user_google_oauth2_omniauth_authorize_path do%>
-              <%= image_tag "google_signin.png", class: "google-signin" %>
-            <% end %>
-            <br>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <p><%= alert %></p>
 
@@ -50,7 +46,10 @@
               <div class="Clear"></div>
             <% end %>
           </fieldset>
-
+          <%= link_to user_google_oauth2_omniauth_authorize_path do%>
+            <%= image_tag "google_signin.png", class: "google-signin" %>
+          <% end %>
+          <br>
           <%= link_to "Sign up", new_registration_path(resource_name) %><br />
         </div>
         <div class="footer">
