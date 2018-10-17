@@ -10,8 +10,9 @@ class InvitesController < ApplicationController
     @invite.sender_id = current_user.id
     if @invite.save
       InviteMailer.new_user_invite(@invite, new_user_registration_path(:invite_token => @invite.token)).deliver
+      redirect_to new_invite_path
     else
-      # oh no, creating an new invitation failed
+      render :new
     end
   end
 

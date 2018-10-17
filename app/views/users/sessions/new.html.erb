@@ -10,7 +10,16 @@
 
           <fieldset class="TableLike small-12">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-              <%= devise_error_messages! %>
+
+              <% if resource.errors.any? %>
+                <div class="alert alert-danger field" role="alert">
+                  An error occurred:
+                  <%resource.errors.full_messages.each do |message|%>
+                    <li> <%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
 
               <div class="field">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "someone@example.com" %>
