@@ -93,9 +93,11 @@
                                   :class => "btn btn-danger mr-1 mt-1"
                       %>
                     <% end %>
-                    <a href="#" class="btn btn-primary mr-1 mt-1" role="button">
-                      <i class="fa fa fa-plus" aria-hidden="true"></i> Show more
-                    </a>
+                    <%= link_to '<i class="fa fa fa-plus" aria-hidden="true"></i> Show more'.html_safe,
+                                flag_path(flag),
+                                method: :get,
+                                :class => "btn btn-primary mr-1 mt-1"
+                    %>
                   </td>
                 </tr>
               <% end %>

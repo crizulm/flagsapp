@@ -10,6 +10,10 @@ class FlagsController < ApplicationController
   end
 
   def show
+
+  end
+
+  def evaluate
     @external_id = request.headers['client-id']
     @flag = Flag.where(auth_token: params[:id]).first
     return render json: { data: 'Error flag not found' }, status: 400 if @flag.nil?
