@@ -5,18 +5,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super do
+      @token = params[:invite_token]
+    end
+  end
 
   # POST /resource
   def create
     super do
-      organization = Organization.new
-      organization.name = 'Organization ' + resource.email
-      organization.save
-      resource.organization = organization
-      resource.is_admin = true
+      @token = params[:invite_token]
+      if !@token.nil?
+        invite = Invite.find_by(token: @token)
+        resource.organization = invite.organization
+        Invite.destroy(invite.id)
+        resource.is_admin = false
+      else
+        organization = Organization.new
+        organization.name = 'Organization ' + resource.email
+        organization.save
+        resource.organization = organization
+        resource.is_admin = true
+      end
       resource.save
     end
   end
@@ -49,7 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer().permit(:sign_up, keys: [:name, :surname, :picture])
+    devise_parameter_sanitizer().permit(:sign_up, keys: [:name, :surname, :picture, :invite_token])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

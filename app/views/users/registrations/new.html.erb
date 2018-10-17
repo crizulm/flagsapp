@@ -16,6 +16,10 @@
 
         <div class="row">
           <div class="col">
+            <% if @token != nil %>
+              <%= hidden_field_tag :invite_token, @token %>
+            <% end %>
+
             <div class="form-group">
               <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control"%>

@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   mount_uploader :picture, UserPictureUploader
   belongs_to :organization
+  has_many :invites
 
   validates :name, presence: true
   validates :surname, presence: true
