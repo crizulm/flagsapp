@@ -36,7 +36,7 @@ class FlagsController < ApplicationController
     @flag.report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0, new_request: 0, new_true_answer: 0)
     @flag.is_deleted = false
     @flag.last_update = DateTime.current
-    @flag_record = @flag.flag_records.new date_start: Date.current, active: @flag.active
+    @flag_record = @flag.flag_records.new date_start: Date.current, active: @flag.active, date_end: Date.parse('1900-01-01')
     @flag_record.save
     if @flag.save
       redirect_to flags_path
@@ -54,7 +54,7 @@ class FlagsController < ApplicationController
     @flag_record = FlagRecord.find(@max_id)
     @flag_record.date_end = Date.current
     @flag_record.save
-    @flag_record_new = @flag.flag_records.new date_start: Date.current, active: @flag.active
+    @flag_record_new = @flag.flag_records.new date_start: Date.current, active: @flag.active, date_end: Date.parse('1900-01-01')
     @flag_record_new.save
     @flag.save
 
@@ -209,8 +209,28 @@ class FlagsController < ApplicationController
   end
 
   def filter_date(date, state_date)
-    flags = Flag.joins(:flag_record)
-    puts flags
+    results = ActiveRecord::Base.connection.execute(cast_consult(date, state_date))
+    cast_json(results)
+  end
+
+  def cast_json(list)
+    result = []
+    list.each do |i|
+      new_flag = Flag.new
+      result.push(new_flag.from_json(i.to_json))
+    end
+    result
+  end
+
+  def cast_consult(date, state_date)
+    date_sql = date == '' ? '1900-01-01' : date
+    result = "SELECT f.*
+       FROM flags f, flag_records fr
+       where fr.flag_id = f.id and
+       f.organization_id = " + current_user.organization_id.to_s + " and
+       fr.active = " + state_date + " and fr.date_start <= '" + date_sql + "'
+       and (fr.date_end >= '" + date_sql + "' or fr.date_end = '1900-01-01')
+       GROUP BY f.id"
   end
 
   def get_number(number)

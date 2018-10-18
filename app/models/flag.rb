@@ -1,4 +1,5 @@
 class Flag < ApplicationRecord
+  include ActiveModel::Serializers::JSON
   belongs_to :organization
   has_one :report
   has_many :flag_records
@@ -22,5 +23,15 @@ class Flag < ApplicationRecord
 
   def evaluate_percentage_positive
     errors.add(:percentage, 'percentage must be less or equals to 100') if !percentage.blank? && percentage > 100
+  end
+
+  def attributes=(hash)
+    hash.each do |key, value|
+      send("#{key}=", value)
+    end
+  end
+
+  def attributes
+    instance_values
   end
 end
