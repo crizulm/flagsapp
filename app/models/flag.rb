@@ -1,6 +1,8 @@
 class Flag < ApplicationRecord
+  include ActiveModel::Serializers::JSON
   belongs_to :organization
   has_one :report
+  has_many :flag_records
   has_many :external_users, dependent: :destroy, inverse_of: :flag
   accepts_nested_attributes_for :external_users
   has_secure_token :auth_token
@@ -21,5 +23,15 @@ class Flag < ApplicationRecord
 
   def evaluate_percentage_positive
     errors.add(:percentage, 'percentage must be less or equals to 100') if !percentage.blank? && percentage > 100
+  end
+
+  def attributes=(hash)
+    hash.each do |key, value|
+      send("#{key}=", value)
+    end
+  end
+
+  def attributes
+    instance_values
   end
 end

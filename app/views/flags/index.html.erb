@@ -24,14 +24,14 @@
 
           <div id="state" hidden=true>
             <%= label_tag  :State%>
-            <%= select_tag  :state, options_for_select([['Active', true], ['Off', false]]), class:"form-control" %>
+            <%= select_tag  :state, options_for_select([['Active', true], ['Not active', false]]), class:"form-control" %>
           </div>
 
           <div id="date" hidden=true>
             <%= label_tag  :Date%>
             <%= date_field_tag  :date, "",class:"form-control"%>
             <%= label_tag  :State%>
-            <%= select_tag  :state_date, options_for_select([['Active', true], ['Off', false]]), class:"form-control" %>
+            <%= select_tag  :state_date, options_for_select([['Active', true], ['Not active', false]]), class:"form-control" %>
           </div>
 
           <%= submit_tag  "Filter", class:"btn btn-primary mt-3"%>
