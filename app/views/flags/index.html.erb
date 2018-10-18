@@ -1,6 +1,46 @@
 <h1 class="page-title">Flag Manager</h1>
 <div class="row">
-  <div class="col-xl-12">
+
+  <div class="col-xl-2">
+    <div class="card border-light">
+      <div class="card-body">
+        <h3 class="page-title">Filter</h3>
+        <%= form_tag( 'filter', :method => :get) do%>
+
+          <div id="select_type" class="form-group">
+            <%= label_tag :Select_filter%>
+            <%= select_tag  :style_filter, options_for_select([['Type', 1], ['Name', 2], ['State', 3], ['Date', 4]]), class:"form-control" %>
+          </div>
+
+          <div id="type">
+            <%= label_tag  :Type%>
+            <%= select_tag  :style_flag, options_for_select([['Boolean', 1], ['Percentage', 2], ['List', 3]]), class:"form-control" %>
+          </div>
+
+          <div id="name" hidden=true>
+            <%= label_tag  :Name%>
+            <%= text_field_tag  :name, "",class:"form-control"%>
+          </div>
+
+          <div id="state" hidden=true>
+            <%= label_tag  :State%>
+            <%= select_tag  :state, options_for_select([['Active', true], ['Off', false]]), class:"form-control" %>
+          </div>
+
+          <div id="date" hidden=true>
+            <%= label_tag  :Date%>
+            <%= date_field_tag  :date, "",class:"form-control"%>
+            <%= label_tag  :State%>
+            <%= select_tag  :state_date, options_for_select([['Active', true], ['Off', false]]), class:"form-control" %>
+          </div>
+
+          <%= submit_tag  "Filter", class:"btn btn-primary mt-3"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-10">
     <div class="card border-light">
       <div class="card-body">
           <div class="d-flex">
@@ -102,3 +142,34 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    $('#select_type').change(function change(e){
+        if(e.target.value == 1){
+            $('#type').attr('hidden', false);
+            $('#name').attr('hidden',true);
+            $('#state').attr('hidden',true);
+            $('#date').attr('hidden',true);
+
+        }
+        if(e.target.value == 2){
+            $('#type').attr('hidden', true);
+            $('#name').attr('hidden',false);
+            $('#state').attr('hidden',true);
+            $('#date').attr('hidden',true);
+
+        }
+        if(e.target.value == 3){
+            $('#type').attr('hidden', true);
+            $('#name').attr('hidden',true);
+            $('#state').attr('hidden',false);
+            $('#date').attr('hidden',true);
+        }
+        if(e.target.value == 4){
+            $('#type').attr('hidden', true);
+            $('#name').attr('hidden',true);
+            $('#state').attr('hidden',true);
+            $('#date').attr('hidden',false);
+        }
+    });
+</script>

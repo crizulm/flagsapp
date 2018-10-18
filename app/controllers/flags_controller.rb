@@ -26,6 +26,11 @@ class FlagsController < ApplicationController
     set_time(flag, (end_time - start_time))
   end
 
+  def filter
+    @flags = evaluate_filter
+    render :index
+  end
+
   def create
     @flag = set_flag
     @flag.report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0, new_request: 0, new_true_answer: 0)
@@ -167,5 +172,47 @@ class FlagsController < ApplicationController
     report = Report.where(flag_id: flag.id).first
     report.total_time = report.total_time + time
     report.save
+  end
+
+  def evaluate_filter
+    flag = case params[:style_filter]
+           when '2'
+             filter_name(params[:name])
+           when '3'
+             filter_state(params[:state])
+           when '4'
+             filter_date
+           else
+             filter_type(get_number(params[:style_flag]))
+           end
+    flag
+  end
+
+  def filter_type(selected_type)
+    Flag.where(organization_id: current_user.organization_id, is_deleted: false, style_flag: selected_type).includes(:organization)
+  end
+
+  def filter_name(name)
+    Flag.where(organization_id: current_user.organization_id, is_deleted: false, name: name).includes(:organization)
+  end
+
+  def filter_state(state)
+    Flag.where(organization_id: current_user.organization_id, is_deleted: false, active: state).includes(:organization)
+  end
+
+  def filter_date;end
+
+  def get_number(number)
+    number = case number
+             when '2'
+             2
+             when '3'
+             3
+             when '4'
+             4
+             else
+             1
+             end
+    number
   end
 end
