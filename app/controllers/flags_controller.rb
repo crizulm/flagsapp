@@ -36,6 +36,8 @@ class FlagsController < ApplicationController
     @flag.report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0, new_request: 0, new_true_answer: 0)
     @flag.is_deleted = false
     @flag.last_update = DateTime.current
+    @flag_record = @flag.flag_records.new date_start: Date.current, active: @flag.active
+    @flag_record.save
     if @flag.save
       redirect_to flags_path
     else
@@ -48,6 +50,12 @@ class FlagsController < ApplicationController
 
     @flag.active = !@flag.active
     @flag.last_update = DateTime.current
+    @max_id = FlagRecord.where(flag_id: @flag.id).maximum(:id)
+    @flag_record = FlagRecord.find(@max_id)
+    @flag_record.date_end = Date.current
+    @flag_record.save
+    @flag_record_new = @flag.flag_records.new date_start: Date.current, active: @flag.active
+    @flag_record_new.save
     @flag.save
 
     redirect_to flags_path
@@ -181,7 +189,7 @@ class FlagsController < ApplicationController
            when '3'
              filter_state(params[:state])
            when '4'
-             filter_date
+             filter_date(params[:date], params[:state_date])
            else
              filter_type(get_number(params[:style_flag]))
            end
@@ -200,7 +208,10 @@ class FlagsController < ApplicationController
     Flag.where(organization_id: current_user.organization_id, is_deleted: false, active: state).includes(:organization)
   end
 
-  def filter_date;end
+  def filter_date(date, state_date)
+    flags = Flag.joins(:flag_record)
+    puts flags
+  end
 
   def get_number(number)
     number = case number

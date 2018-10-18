@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_000121) do
+ActiveRecord::Schema.define(version: 2018_10_18_153411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2018_10_17_000121) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["flag_id"], name: "index_external_users_on_flag_id"
+  end
+
+  create_table "flag_records", force: :cascade do |t|
+    t.bigint "flag_id"
+    t.date "date_start"
+    t.date "date_end"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flag_id"], name: "index_flag_records_on_flag_id"
   end
 
   create_table "flags", force: :cascade do |t|
