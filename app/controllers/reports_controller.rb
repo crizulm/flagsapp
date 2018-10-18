@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @reports = Report.joins(:flag).where("flags.organization_id" => current_user.organization_id)
+    @reports = Report.joins(:flag).where('flags.organization_id' => current_user.organization_id)
   end
 
   def show
@@ -15,11 +15,13 @@ class ReportsController < ApplicationController
   end
 
   private
+
   def get_json(report)
     method_return = { 'Total' => report.total_request,
                       'Positive' => (report.total_request.positive? ? (report.true_answer * 100) / report.total_request : 0),
                       'Negative' => (report.total_request.positive? ? (report.false_answer * 100) / report.total_request : 0),
                       'Positive/Negative Rate' => (report.false_answer.positive? ? report.true_answer / report.false_answer : report.true_answer),
                       'Average Response Time' => (report.total_request.positive? ? report.total_time / report.total_request : 0) }
+    method_return
   end
 end

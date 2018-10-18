@@ -8,7 +8,7 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-  
+
   # Mailer config.
   config.action_mailer.default_url_options = { host: ENV['URL'], port: ENV['PORT'] }
   config.action_mailer.delivery_method = :smtp
