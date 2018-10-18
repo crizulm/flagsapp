@@ -24,7 +24,7 @@ class User < ApplicationRecord
       user.surname = auth.info.last_name
       user.email = auth.info.email
       user.image = auth.info.image
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
       user.is_admin = true
       organization = Organization.new
       organization.name = 'Organization ' + user.email
@@ -36,10 +36,6 @@ class User < ApplicationRecord
   end
 
   def apply_omniauth(auth)
-    update_attributes(
-        provider: auth.provider,
-        uid: auth.uid
-    )
+    update_attributes(provider: auth.provider, uid: auth.uid)
   end
-
 end
