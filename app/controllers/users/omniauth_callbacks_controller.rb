@@ -23,6 +23,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   private
+
   def omniauth_params
     request.env["omniauth.auth"]
   end

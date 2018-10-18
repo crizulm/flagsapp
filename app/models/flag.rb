@@ -11,14 +11,15 @@ class Flag < ApplicationRecord
   validate :percentage_validation
 
   def percentage_validation
-    if style_flag == 2
-      if percentage.blank? || percentage < 1
-        errors.add(:percentage, "percentage must be greater or equals to 1")
-      end
+    evaluate_percentage_negative if style_flag == 2
+    evaluate_percentage_positive if style_flag == 2
+  end
 
-      if !percentage.blank? && percentage > 100
-        errors.add(:percentage, "percentage must be less or equals to 100")
-      end
-    end
+  def evaluate_percentage_negative
+    errors.add(:percentage, 'percentage must be greater or equals to 1') if percentage.blank? || percentage < 1
+  end
+
+  def evaluate_percentage_positive
+    errors.add(:percentage, 'percentage must be less or equals to 100') if !percentage.blank? && percentage > 100
   end
 end

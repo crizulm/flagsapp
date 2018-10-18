@@ -16,19 +16,11 @@ class FlagsController < ApplicationController
   end
 
   def evaluate
-    external_id = request.headers['client-id']
     flag = Flag.where(auth_token: params[:id]).first
     return render json: { data: 'Error flag not found' }, status: 400 if flag.nil?
 
     start_time = Time.now
-    result = case flag.style_flag
-              when 2
-                evaluate_percentage_flag(external_id, flag)
-              when 3
-                evaluate_list_flag(external_id, flag)
-              else
-                evaluate_boolean_flag(flag)
-              end
+    result = start_evaluate(flag, request.headers['client-id'])
     end_time = Time.now
     render json: { data: result }, status: :ok
     set_time(flag, (end_time - start_time))
@@ -65,6 +57,18 @@ class FlagsController < ApplicationController
   end
 
   private
+
+  def start_evaluate(flag, external_id)
+    result = case flag.style_flag
+             when 2
+               evaluate_percentage_flag(external_id, flag)
+             when 3
+               evaluate_list_flag(external_id, flag)
+             else
+               evaluate_boolean_flag(flag)
+             end
+    result
+  end
 
   def evaluate_boolean_flag(flag)
     method_return = true
@@ -131,14 +135,19 @@ class FlagsController < ApplicationController
 
   def set_flag
     organization = Organization.find(current_user.organization_id)
+    flag = obtain_flag(organization)
+    flag
+  end
+
+  def obtain_flag(organization)
     flag = case params[:flag][:style_flag]
-            when '2'
-              organization.flags.new flag_params_percentage_type
-            when '3'
-              organization.flags.new flag_params_list_type
-            else
-              organization.flags.new flag_params_boolean_type
-            end
+           when '2'
+             organization.flags.new flag_params_percentage_type
+           when '3'
+             organization.flags.new flag_params_list_type
+           else
+             organization.flags.new flag_params_boolean_type
+           end
     flag
   end
 
@@ -159,5 +168,4 @@ class FlagsController < ApplicationController
     report.total_time = report.total_time + time
     report.save
   end
-
 end

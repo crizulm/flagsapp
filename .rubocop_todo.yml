@@ -84,12 +84,16 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Exclude:
     - 'app/controllers/*'
+    - 'app/uploaders/*'
     - 'app/controllers/users/*'
     - 'app/models/*'
     - 'db/migrate/*'
     - 'spec/**/*'
     - 'test/**/*'
+    - 'app/helpers/invites_helper.rb'
     - 'app/helpers/application_helper.rb'
+    - 'app/helpers/reports_helper.rb'
+    - 'app/mailers/invite_mailer.rb'
     - 'app/helpers/flags_helper.rb'
     - 'app/helpers/home_helper.rb'
     - 'app/mailers/application_mailer.rb'
@@ -135,6 +139,7 @@ Style/NumericLiterals:
 Style/PercentLiteralDelimiters:
   Exclude:
     - 'config/initializers/assets.rb'
+    - 'app/uploaders/user_picture_uploader.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -159,6 +164,8 @@ Style/StringLiterals:
     - 'bin/yarn'
     - 'config/environments/production.rb'
     - 'config/puma.rb'
+    - 'config/environments/development.rb'
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
     - 'config/routes.rb'
     - 'db/migrate/20180924222006_devise_create_users.rb'
     - 'db/schema.rb'
@@ -178,6 +185,46 @@ Style/SymbolArray:
 Metrics/LineLength:
   Max: 154
 
-Metrics/BlockLength:
+Metrics/BlockLength: 
   Exclude:
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
     - 'db/schema.rb'
+
+
+Style/HashSyntax:
+  Exclude:
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/20181011185354_create_flags.rb'
+
+Layout/IndentHash:
+  Exclude:
+    - 'config/initializers/devise.rb'
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+
+Layout/TrailingWhitespace:
+  Exclude:
+    - 'config/environments/production.rb'
+
+Style/BracesAroundHashParameters:
+  Exclude:
+    - 'config/initializers/devise.rb'
+
+Lint/UnusedMethodArgument:  
+  Exclude:
+    - 'app/uploaders/user_picture_uploader.rb'
+
+Style/MethodCallWithoutArgsParentheses:  
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'
+
+Layout/LeadingCommentSpace:  
+  Exclude:
+    - 'config/initializers/devise.rb'
+
+
