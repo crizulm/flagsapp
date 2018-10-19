@@ -183,17 +183,16 @@ class FlagsController < ApplicationController
   end
 
   def evaluate_filter
-    flag = case params[:style_filter]
-           when '2'
-             filter_name(params[:name])
-           when '3'
-             filter_state(params[:state])
-           when '4'
-             filter_date(params[:date], params[:state_date])
-           else
-             filter_type(get_number(params[:style_flag]))
-           end
-    flag
+    case params[:style_filter]
+    when '2'
+      filter_name(params[:name])
+    when '3'
+      filter_state(params[:state])
+    when '4'
+      filter_date(params[:date], params[:state_date])
+    else
+      filter_type(params[:style_flag].to_i)
+    end
   end
 
   def filter_type(selected_type)
@@ -231,19 +230,6 @@ class FlagsController < ApplicationController
        fr.active = " + state_date + " and fr.date_start <= '" + date_sql + "'
        and (fr.date_end >= '" + date_sql + "' or fr.date_end = '1900-01-01')
        GROUP BY f.id"
-  end
-
-  def get_number(number)
-    number = case number
-             when '2'
-             2
-             when '3'
-             3
-             when '4'
-             4
-             else
-             1
-             end
-    number
+    result
   end
 end
