@@ -1,4 +1,7 @@
+require 'reports_service'
+
 class FlagsController < ApplicationController
+  include ReportsService
   before_action :authenticate_user!, only: [:index, :show]
   before_action :authenticate_admin!, only: [:new, :create, :change, :destroy]
 
@@ -39,6 +42,7 @@ class FlagsController < ApplicationController
     @flag_record = @flag.flag_records.new date_start: Date.current, active: @flag.active, date_end: Date.parse('1900-01-01')
     @flag_record.save
     if @flag.save
+      post_report(@flag.auth_token)
       redirect_to flags_path
     else
       render :new
