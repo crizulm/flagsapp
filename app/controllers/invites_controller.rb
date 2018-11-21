@@ -1,3 +1,5 @@
+require 'invites_service.rb'
+
 class InvitesController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :create]
 

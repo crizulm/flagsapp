@@ -4,11 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'okcomputer'
-
 gem 'rollbar'
-
-gem "cocoon"
-
+gem 'cocoon'
 gem 'rubocop', require: false
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -49,7 +46,7 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # Font Awesome
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 # Pictures
 gem 'carrierwave'
 gem 'mini_magick'
@@ -59,6 +56,8 @@ gem 'omniauth-google-oauth2'
 gem 'figaro'
 # Active link to
 gem 'active_link_to'
+# Rest Client GEM
+gem 'rest-client'
 gem 'newrelic_rpm'
 
 group :development, :test do

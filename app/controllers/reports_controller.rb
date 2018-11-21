@@ -1,3 +1,5 @@
+require 'reports_service.rb'
+
 class ReportsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
