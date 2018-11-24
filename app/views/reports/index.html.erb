@@ -34,6 +34,9 @@
               <th class="text-center">
                 Deleted
               </th>
+              <th class="text-center">
+                JSON
+              </th>
             </tr>
             </thead>
             <tbody>
@@ -93,6 +96,13 @@
                         Yes
                       </span>
                   <% end %>
+                </td>
+                <td class="text-center">
+                  <%= link_to '<i class="fa fa-quote-right" aria-hidden="true"></i>'.html_safe,
+                              report_path(flag.auth_token),
+                              method: :get,
+                              :class => "btn btn-primary mr-1 mt-1"
+                  %>
                 </td>
               </tr>
             <% end %>

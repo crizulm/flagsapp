@@ -20,10 +20,11 @@ class ReportsController < ApplicationController
   end
 
   def show
-    flag = Flag.where(auth_token: params[:id]).first
-    return render json: {data: 'Error flag not found'}, status: 400 if flag.nil?
-
-    result = get_report_json(flag.auth_token)
-    render json: result, status: :ok
+    begin
+      report = get_report_json(params[:id])
+      render json: report, status: :ok
+    rescue RestClient::ExceptionWithResponse => err
+      render json: err.response.body, status: err.http_code
+    end
   end
 end
