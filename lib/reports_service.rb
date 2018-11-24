@@ -2,8 +2,10 @@ require 'rest-client'
 
 module ReportsService
 
-  def get_report
-
+  def get_report(flag_token)
+    url = ENV['REPORTS_URL_SERVICE'] + '/reports/' + flag_token
+    result = RestClient.get url, { accept: :json }
+    result.body
   end
 
   def get_report_json(flag_token)
