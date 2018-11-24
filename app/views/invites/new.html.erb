@@ -1,11 +1,11 @@
 <h1 class="page-title">Send Invitation</h1>
 <div class="card border-light">
   <div class="card-body">
-    <%= form_for @invite , :url => invites_path do |f| %>
-      <% if @invite.errors.any? %>
+    <%= form_tag( invites_path, :method => :post) do %>
+      <% if @errors.any? %>
         <div class="alert alert-danger" role="alert">
           An error occurred:
-          <%@invite.errors.full_messages.each do |message|%>
+          <%@errors.each do |message|%>
             <li> <%= message %></li>
           <% end %>
           </ul>
@@ -15,8 +15,8 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <%= f.label :Email %>
-            <%= f.email_field :email, autofocus: true, placeholder: "someone@example.com", class:"form-control" %>
+            <%= label_tag :Email %>
+            <%= text_field_tag :email, "",class:"form-control"%>
           </div>
         </div>
         <div class="col">
@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <%= f.submit 'Send', class:"btn btn-primary" %>
+      <%= submit_tag "Send", class:"btn btn-primary"%>
     <% end %>
   </div>
 </div>

@@ -1,27 +1,30 @@
-require 'invites_service.rb'
+require 'invites_service'
 
 class InvitesController < ApplicationController
+  include InvitesService
   before_action :authenticate_admin!, only: [:new, :create]
 
   def new
-    @invite = Invite.new
+    @errors = []
   end
 
   def create
-    @invite = Invite.new(invite_params)
-    @invite.organization_id = current_user.organization_id
-    @invite.sender_id = current_user.id
-    if @invite.save
-      InviteMailer.new_user_invite(@invite, new_user_registration_path(invite_token: @invite.token)).deliver
+    email = params[:email]
+    organization_id = current_user.organization_id
+    sender_id = current_user.id
+    begin
+      invite = create_invite(organization_id, sender_id, email)
       redirect_to new_invite_path
-    else
-      render :new
+    rescue RestClient::ExceptionWithResponse => err
+      handle_error(err)
     end
   end
 
   private
 
-  def invite_params
-    params.require(:invite).permit(:email)
+  def handle_error(err)
+    err_body = JSON.parse err.response.body
+    @errors = err_body['error']
+    render :new
   end
 end
