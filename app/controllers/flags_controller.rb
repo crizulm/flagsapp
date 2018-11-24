@@ -49,6 +49,11 @@ class FlagsController < ApplicationController
     end
   end
 
+  def history_flag
+    @flag_state = FlagRecord.where(flag_id: params[:id])
+    @evaluate_history = EvaluateHistory.where(flag_id: params[:id])
+  end
+
   def change
     @flag = Flag.find(params[:id])
 
@@ -82,16 +87,17 @@ class FlagsController < ApplicationController
              when 3
                evaluate_list_flag(external_id, flag)
              else
-               evaluate_boolean_flag(flag)
+               evaluate_boolean_flag(flag, external_id)
              end
     result
   end
 
-  def evaluate_boolean_flag(flag)
+  def evaluate_boolean_flag(flag, external_id)
     method_return = true
     unless flag.is_deleted
       method_return = flag.active
       set_result(flag, method_return)
+      set_evaluate(external_id, flag, method_return)
     end
     method_return
   end
@@ -105,6 +111,7 @@ class FlagsController < ApplicationController
         method_return = !external_user.nil? ? external_user.active : evaluate_new_user(external_id, flag)
         set_result(flag, method_return)
       end
+      set_evaluate(external_id, flag, method_return)
     end
     method_return
   end
@@ -125,6 +132,11 @@ class FlagsController < ApplicationController
     value
   end
 
+  def set_evaluate(external_id, flag, value)
+    evaluate = flag.evaluate_histories.new user_id: external_id, active: value, date: DateTime.current
+    evaluate.save
+  end
+
   def evaluate_list_flag(external_id, flag)
     method_return = true
     unless flag.is_deleted
@@ -134,6 +146,7 @@ class FlagsController < ApplicationController
         method_return = !external_user.nil?
         set_result(flag, method_return)
       end
+      set_evaluate(external_id, flag, method_return)
     end
     method_return
   end

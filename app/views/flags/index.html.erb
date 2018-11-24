@@ -5,36 +5,36 @@
     <div class="card border-light">
       <div class="card-body">
         <h3 class="page-title">Filter</h3>
-        <%= form_tag( 'filter', :method => :get) do%>
+        <%= form_tag('filter', :method => :get) do %>
 
           <div id="select_type" class="form-group">
-            <%= label_tag :Select_filter%>
-            <%= select_tag  :style_filter, options_for_select([['Type', 1], ['Name', 2], ['State', 3], ['Date', 4]]), class:"form-control" %>
+            <%= label_tag :Select_filter %>
+            <%= select_tag :style_filter, options_for_select([['Type', 1], ['Name', 2], ['State', 3], ['Date', 4]]), class: "form-control" %>
           </div>
 
           <div id="type">
-            <%= label_tag  :Type%>
-            <%= select_tag  :style_flag, options_for_select([['Boolean', 1], ['Percentage', 2], ['List', 3]]), class:"form-control" %>
+            <%= label_tag :Type %>
+            <%= select_tag :style_flag, options_for_select([['Boolean', 1], ['Percentage', 2], ['List', 3]]), class: "form-control" %>
           </div>
 
           <div id="name" hidden=true>
-            <%= label_tag  :Name%>
-            <%= text_field_tag  :name, "",class:"form-control"%>
+            <%= label_tag :Name %>
+            <%= text_field_tag :name, "", class: "form-control" %>
           </div>
 
           <div id="state" hidden=true>
-            <%= label_tag  :State%>
-            <%= select_tag  :state, options_for_select([['Active', true], ['Not active', false]]), class:"form-control" %>
+            <%= label_tag :State %>
+            <%= select_tag :state, options_for_select([['Active', true], ['Not active', false]]), class: "form-control" %>
           </div>
 
           <div id="date" hidden=true>
-            <%= label_tag  :Date%>
-            <%= date_field_tag  :date, "",class:"form-control"%>
-            <%= label_tag  :State%>
-            <%= select_tag  :state_date, options_for_select([['Active', true], ['Not active', false]]), class:"form-control" %>
+            <%= label_tag :Date %>
+            <%= date_field_tag :date, "", class: "form-control" %>
+            <%= label_tag :State %>
+            <%= select_tag :state_date, options_for_select([['Active', true], ['Not active', false]]), class: "form-control" %>
           </div>
 
-          <%= submit_tag  "Filter", class:"btn btn-primary mt-3"%>
+          <%= submit_tag "Filter", class: "btn btn-primary mt-3" %>
         <% end %>
       </div>
     </div>
@@ -43,98 +43,103 @@
   <div class="col-xl-10">
     <div class="card border-light">
       <div class="card-body">
-          <div class="d-flex">
-            <div class="mr-auto p-2">
+        <div class="d-flex">
+          <div class="mr-auto p-2">
 
-            </div>
-              <div class="p-2">
-                <%= link_to '<i class="fa fa-bar-chart" aria-hidden="true"></i> View Reports'.html_safe, reports_path, :class => "btn btn-success" %>
-                <% if current_user.is_admin == true %>
-                <%= link_to '<i class="fa fa-plus" aria-hidden="true"></i> Add Flag'.html_safe, new_flag_path, :class => "btn btn-primary" %>
-                <% end %>
-              </div>
           </div>
+          <div class="p-2">
+            <%= link_to '<i class="fa fa-bar-chart" aria-hidden="true"></i> View Reports'.html_safe, reports_path, :class => "btn btn-success" %>
+            <% if current_user.is_admin == true %>
+              <%= link_to '<i class="fa fa-plus" aria-hidden="true"></i> Add Flag'.html_safe, new_flag_path, :class => "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
 
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-              <tr>
-                <th>
-                  #
-                </th>
-                <th>
-                  Name
-                </th>
-                <th>
-                  Type
-                </th>
-                <th>
-                  Status
-                </th>
-                <th>
-                  Last update
-                </th>
-                <th class="text-center">
-                  Actions
-                </th>
-              </tr>
+            <tr>
+              <th>
+                #
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                Type
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Last update
+              </th>
+              <th class="text-center">
+                Actions
+              </th>
+            </tr>
             </thead>
             <tbody>
-              <% @flags.each do |flag| %>
-                <tr>
-                  <td>
-                    <strong><%= flag.id %></strong>
-                  </td>
-                  <td>
-                    <%= flag.name %>
-                  </td>
-                  <td>
-                    <% if flag.style_flag == 1 %>
-                      Boolean
-                    <% elsif flag.style_flag == 2 %>
-                      Porcentage
-                    <% elsif flag.style_flag == 3 %>
-                       List
-                    <% end %>
-                  </td>
-                  <td>
-                    <% if flag.active == true %>
+            <% @flags.each do |flag| %>
+              <tr>
+                <td>
+                  <strong><%= flag.id %></strong>
+                </td>
+                <td>
+                  <%= flag.name %>
+                </td>
+                <td>
+                  <% if flag.style_flag == 1 %>
+                    Boolean
+                  <% elsif flag.style_flag == 2 %>
+                    Porcentage
+                  <% elsif flag.style_flag == 3 %>
+                    List
+                  <% end %>
+                </td>
+                <td>
+                  <% if flag.active == true %>
                       <span class="badge badge-success">
                         Active
                       </span>
-                    <% else %>
+                  <% else %>
                       <span class="badge badge-danger">
                         Not active
                       </span>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= flag.last_update.strftime("%m/%d/%Y %r") %>
-                  </td>
-                  <td class="text-center">
-                    <% if current_user.is_admin == true %>
-                      <%= link_to '<i class="fa fa-clone" aria-hidden="true"></i>'.html_safe,
-                                  change_status_flag_path(flag),
-                                  method: :put,
-                                  :class => "btn btn-warning mr-1 mt-1"
-                      %>
-                    <% end %>
-                    <% if current_user.is_admin == true %>
-                      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
-                                  flag_path(flag),
-                                  method: :delete,
-                                  data: { confirm: 'Are you sure?' },
-                                  :class => "btn btn-danger mr-1 mt-1"
-                      %>
-                    <% end %>
-                    <%= link_to '<i class="fa fa fa-plus" aria-hidden="true"></i> Show more'.html_safe,
-                                flag_path(flag),
-                                method: :get,
-                                :class => "btn btn-primary mr-1 mt-1"
+                  <% end %>
+                </td>
+                <td>
+                  <%= flag.last_update.strftime("%m/%d/%Y %r") %>
+                </td>
+                <td class="text-center">
+                  <% if current_user.is_admin == true %>
+                    <%= link_to '<i class="fa fa-clone" aria-hidden="true"></i>'.html_safe,
+                                change_status_flag_path(flag),
+                                method: :put,
+                                :class => "btn btn-warning mr-1 mt-1"
                     %>
-                  </td>
-                </tr>
-              <% end %>
+                  <% end %>
+                  <% if current_user.is_admin == true %>
+                    <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
+                                flag_path(flag),
+                                method: :delete,
+                                data: {confirm: 'Are you sure?'},
+                                :class => "btn btn-danger mr-1 mt-1"
+                    %>
+                  <% end %>
+                  <%= link_to '<i class="fa fa fa-history" aria-hidden="true"></i> '.html_safe,
+                              history_flag_path(flag),
+                              method: :get,
+                              :class => "btn btn-primary mr-1 mt-1"
+                  %>
+                  <%= link_to '<i class="fa fa fa-plus" aria-hidden="true"></i> Show more'.html_safe,
+                              flag_path(flag),
+                              method: :get,
+                              :class => "btn btn-primary mr-1 mt-1"
+                  %>
+                </td>
+              </tr>
+            <% end %>
             </tbody>
           </table>
         </div>
@@ -144,32 +149,32 @@
 </div>
 
 <script type="text/javascript">
-    $('#select_type').change(function change(e){
-        if(e.target.value == 1){
+    $('#select_type').change(function change(e) {
+        if (e.target.value == 1) {
             $('#type').attr('hidden', false);
-            $('#name').attr('hidden',true);
-            $('#state').attr('hidden',true);
-            $('#date').attr('hidden',true);
+            $('#name').attr('hidden', true);
+            $('#state').attr('hidden', true);
+            $('#date').attr('hidden', true);
 
         }
-        if(e.target.value == 2){
+        if (e.target.value == 2) {
             $('#type').attr('hidden', true);
-            $('#name').attr('hidden',false);
-            $('#state').attr('hidden',true);
-            $('#date').attr('hidden',true);
+            $('#name').attr('hidden', false);
+            $('#state').attr('hidden', true);
+            $('#date').attr('hidden', true);
 
         }
-        if(e.target.value == 3){
+        if (e.target.value == 3) {
             $('#type').attr('hidden', true);
-            $('#name').attr('hidden',true);
-            $('#state').attr('hidden',false);
-            $('#date').attr('hidden',true);
+            $('#name').attr('hidden', true);
+            $('#state').attr('hidden', false);
+            $('#date').attr('hidden', true);
         }
-        if(e.target.value == 4){
+        if (e.target.value == 4) {
             $('#type').attr('hidden', true);
-            $('#name').attr('hidden',true);
-            $('#state').attr('hidden',true);
-            $('#date').attr('hidden',false);
+            $('#name').attr('hidden', true);
+            $('#state').attr('hidden', true);
+            $('#date').attr('hidden', false);
         }
     });
 </script>

@@ -4,6 +4,7 @@ class Flag < ApplicationRecord
   has_one :flag_request
   has_many :flag_records
   has_many :external_users, dependent: :destroy, inverse_of: :flag
+  has_many :evaluate_histories, dependent: :destroy, inverse_of: :flag
   accepts_nested_attributes_for :external_users
   has_secure_token :auth_token
 
