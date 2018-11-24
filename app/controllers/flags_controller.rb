@@ -42,7 +42,7 @@ class FlagsController < ApplicationController
     @flag_record = @flag.flag_records.new date_start: Date.current, active: @flag.active, date_end: Date.parse('1900-01-01')
     @flag_record.save
     if @flag.save
-      post_report(@flag.auth_token)
+      create_report(@flag.auth_token)
       redirect_to flags_path
     else
       render :new
@@ -91,7 +91,7 @@ class FlagsController < ApplicationController
     method_return = true
     unless flag.is_deleted
       method_return = flag.active
-      set_report(flag, method_return)
+      set_result(flag, method_return)
     end
     method_return
   end
@@ -103,7 +103,7 @@ class FlagsController < ApplicationController
       if flag.active
         external_user = ExternalUser.where(flag_id: flag.id, user_id: external_id).first
         method_return = !external_user.nil? ? external_user.active : evaluate_new_user(external_id, flag)
-        set_report(flag, method_return)
+        set_result(flag, method_return)
       end
     end
     method_return
@@ -132,14 +132,14 @@ class FlagsController < ApplicationController
       if flag.active
         external_user = ExternalUser.where(flag_id: flag.id, user_id: external_id).first
         method_return = !external_user.nil?
-        set_report(flag, method_return)
+        set_result(flag, method_return)
       end
     end
     method_return
   end
 
-  def set_report(flag, result)
-    put_report_result(flag.auth_token, result)
+  def set_result(flag, result)
+    update_report_result(flag.auth_token, result)
   end
 
   def set_flag
@@ -173,7 +173,7 @@ class FlagsController < ApplicationController
   end
 
   def set_time(flag, time)
-    put_report_time(flag.auth_token, time)
+    update_report_time(flag.auth_token, time)
   end
 
   def evaluate_filter
