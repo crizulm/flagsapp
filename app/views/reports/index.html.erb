@@ -34,65 +34,75 @@
               <th class="text-center">
                 Deleted
               </th>
+              <th class="text-center">
+                JSON
+              </th>
             </tr>
             </thead>
             <tbody>
-            <% @reports.each do |report| %>
+            <% @flags.each do |flag| %>
               <tr>
                 <td>
-                  <strong><%= report.flag.id %></strong>
+                  <strong><%= flag.id %></strong>
                 </td>
                 <td>
-                  <%= report.flag.name %>
+                  <%= flag.name %>
                 </td>
                 <td>
-                  <% if report.flag.style_flag == 1 %>
+                  <% if flag.style_flag == 1 %>
                     Boolean
-                  <% elsif report.flag.style_flag == 2 %>
+                  <% elsif flag.style_flag == 2 %>
                     Porcentage
-                  <% elsif report.flag.style_flag == 3 %>
+                  <% elsif flag.style_flag == 3 %>
                     List
                   <% end %>
                 </td>
                 <td class="text-center">
-                  <%= report.total_request %>
+                  <%= flag.report.total_request %>
                 </td>
                 <td class="text-center">
-                  <%= report.true_answer %>
-                  <% if report.total_request == 0 %>
+                  <%= flag.report.true_answer %>
+                  <% if flag.report.total_request == 0 %>
                     (0 %)
                   <% else %>
-                    (<%= (report.true_answer * 100) / report.total_request %> %)
+                    (<%= (flag.report.true_answer * 100) / flag.report.total_request %> %)
                   <% end %>
                 </td>
                 <td class="text-center">
-                  <%= report.false_answer %>
-                  <% if report.total_request == 0 %>
+                  <%= flag.report.false_answer %>
+                  <% if flag.report.total_request == 0 %>
                     (0 %)
                   <% else %>
-                    (<%= (report.false_answer * 100) / report.total_request %> %)
+                    (<%= (flag.report.false_answer * 100) / flag.report.total_request %> %)
                   <% end %>
                 </td>
                 <td class="text-center">
-                  <% if report.false_answer == 0 %>
-                    <%= report.true_answer %>
+                  <% if flag.report.false_answer == 0 %>
+                    <%= flag.report.true_answer %>
                   <% else %>
-                    <%= report.true_answer.to_f/report.false_answer.to_f %>
+                    <%= flag.report.true_answer.to_f/flag.report.false_answer.to_f %>
                   <% end %>
                 </td>
                 <td class="text-center">
-                  <% if report.total_request == 0 %>
+                  <% if flag.report.total_request == 0 %>
                     0.0
                   <% else %>
-                    <%= report.total_time.to_f/report.total_request %>
+                    <%= flag.report.total_time.to_f/flag.report.total_request %>
                   <% end %>
                 </td>
                 <td class="text-center">
-                  <% if report.flag.is_deleted == true %>
+                  <% if flag.is_deleted == true %>
                       <span class="badge badge-danger">
                         Yes
                       </span>
                   <% end %>
+                </td>
+                <td class="text-center">
+                  <%= link_to '<i class="fa fa-quote-right" aria-hidden="true"></i>'.html_safe,
+                              report_path(flag.auth_token),
+                              method: :get,
+                              :class => "btn btn-primary mr-1 mt-1"
+                  %>
                 </td>
               </tr>
             <% end %>

@@ -67,15 +67,6 @@ ActiveRecord::Schema.define(version: 2018_11_24_232906) do
     t.index ["organization_id"], name: "index_flags_on_organization_id"
   end
 
-  create_table "invites", force: :cascade do |t|
-    t.string "email"
-    t.integer "sender_id"
-    t.integer "organization_id"
-    t.string "token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false

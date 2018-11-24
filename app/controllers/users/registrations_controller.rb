@@ -1,6 +1,8 @@
 # frozen_string_literal: true
+require 'invites_service'
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  include InvitesService
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -16,9 +18,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do
       @token = params[:invite_token]
       if !@token.nil?
-        invite = Invite.find_by(token: @token)
-        resource.organization = invite.organization
-        Invite.destroy(invite.id)
+        invite_json = JSON.parse show_invite(@token)
+        organization = Organization.find_by(id: invite_json['organization_id'])
+        resource.organization = organization
+        destroy_invite(invite_json['id'])
         resource.is_admin = false
       else
         organization = Organization.new

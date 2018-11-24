@@ -1,5 +1,6 @@
 class Flag < ApplicationRecord
   include ActiveModel::Serializers::JSON
+
   belongs_to :organization
   has_one :flag_request
   has_many :flag_records
@@ -12,6 +13,8 @@ class Flag < ApplicationRecord
   validates :style_flag, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3 }
   validates_associated :external_users
   validate :percentage_validation
+
+  attr_accessor :report
 
   def percentage_validation
     evaluate_percentage_negative if style_flag == 2
