@@ -1,7 +1,7 @@
 class Flag < ApplicationRecord
   include ActiveModel::Serializers::JSON
   belongs_to :organization
-  has_one :report
+  has_one :flag_request
   has_many :flag_records
   has_many :external_users, dependent: :destroy, inverse_of: :flag
   accepts_nested_attributes_for :external_users

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_153411) do
+ActiveRecord::Schema.define(version: 2018_11_24_065655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 2018_10_18_153411) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["flag_id"], name: "index_flag_records_on_flag_id"
+  end
+
+  create_table "flag_requests", force: :cascade do |t|
+    t.integer "new_request"
+    t.integer "new_true_answer"
+    t.bigint "flag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flag_id"], name: "index_flag_requests_on_flag_id"
   end
 
   create_table "flags", force: :cascade do |t|
@@ -61,19 +70,6 @@ ActiveRecord::Schema.define(version: 2018_10_18_153411) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "reports", force: :cascade do |t|
-    t.integer "total_request"
-    t.integer "true_answer"
-    t.integer "false_answer"
-    t.integer "new_request"
-    t.integer "new_true_answer"
-    t.decimal "total_time"
-    t.bigint "flag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["flag_id"], name: "index_reports_on_flag_id"
   end
 
   create_table "users", force: :cascade do |t|

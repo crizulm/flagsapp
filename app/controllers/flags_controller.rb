@@ -20,12 +20,12 @@ class FlagsController < ApplicationController
 
   def evaluate
     flag = Flag.where(auth_token: params[:id]).first
-    return render json: { data: 'Error flag not found' }, status: 400 if flag.nil?
+    return render json: {data: 'Error flag not found'}, status: 400 if flag.nil?
 
     start_time = Time.now
     result = start_evaluate(flag, request.headers['client-id'])
     end_time = Time.now
-    render json: { data: result }, status: :ok
+    render json: {data: result}, status: :ok
     set_time(flag, (end_time - start_time))
   end
 
@@ -36,8 +36,8 @@ class FlagsController < ApplicationController
 
   def create
     @flag = set_flag
-    @flag.report = Report.new(total_request: 0, true_answer: 0, false_answer: 0, total_time: 0, new_request: 0, new_true_answer: 0)
     @flag.is_deleted = false
+    @flag.flag_request = FlagRequest.new(new_request: 0, new_true_answer: 0)
     @flag.last_update = DateTime.current
     @flag_record = @flag.flag_records.new date_start: Date.current, active: @flag.active, date_end: Date.parse('1900-01-01')
     @flag_record.save
@@ -110,16 +110,16 @@ class FlagsController < ApplicationController
   end
 
   def evaluate_new_user(external_id, flag)
-    report = Report.where(flag_id: flag.id).first
-    percentage = report.new_request.positive? ? (report.new_true_answer * 100) / report.new_request : 0
-    report.new_request = report.new_request + 1
-    method_return = set_new_external_user(external_id, flag, flag.percentage > percentage, report)
-    report.save
+    flag_request = FlagRequest.where(flag_id: flag.id).first
+    percentage = flag_request.new_request.positive? ? (flag_request.new_true_answer * 100) / flag_request.new_request : 0
+    flag_request.new_request = flag_request.new_request + 1
+    method_return = set_new_external_user(external_id, flag, flag.percentage > percentage, flag_request)
+    flag_request.save
     method_return
   end
 
-  def set_new_external_user(external_id, flag, value, report)
-    report.new_true_answer = report.new_true_answer + 1 if value
+  def set_new_external_user(external_id, flag, value, flag_request)
+    flag_request.new_true_answer = flag_request.new_true_answer + 1 if value
     external_new_user = flag.external_users.new user_id: external_id, active: value
     external_new_user.save
     value
@@ -139,15 +139,7 @@ class FlagsController < ApplicationController
   end
 
   def set_report(flag, result)
-    report = Report.where(flag_id: flag.id).first
-    report.total_request = report.total_request + 1
-    if result
-      report.true_answer = report.true_answer + 1
-    else
-      report.false_answer = report.false_answer + 1
-    end
-
-    report.save
+    put_report_result(flag.auth_token, result)
   end
 
   def set_flag
@@ -181,9 +173,7 @@ class FlagsController < ApplicationController
   end
 
   def set_time(flag, time)
-    report = Report.where(flag_id: flag.id).first
-    report.total_time = report.total_time + time
-    report.save
+    put_report_time(flag.auth_token, time)
   end
 
   def evaluate_filter
