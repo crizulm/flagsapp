@@ -5,8 +5,8 @@ class InvitesController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :create]
 
   def new
-    @healthcheck = healthcheck_invite
     @errors = []
+    healthcheck_service
   end
 
   def create
@@ -22,6 +22,13 @@ class InvitesController < ApplicationController
   end
 
   private
+
+  def healthcheck_service
+    healthcheck = healthcheck_invite
+    unless healthcheck
+      render :healthcheck_fail
+    end
+  end
 
   def handle_error(err)
     @errors = JSON.parse err.response.body
