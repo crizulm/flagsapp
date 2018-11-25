@@ -115,7 +115,8 @@
                     <%= link_to '<i class="fa fa-clone" aria-hidden="true"></i>'.html_safe,
                                 change_status_flag_path(flag),
                                 method: :put,
-                                :class => "btn btn-warning mr-1 mt-1"
+                                :class => "btn btn-warning mr-1 mt-1 hint--top hint--rounded hint--warning",
+                                'data-hint': 'Change the flag status'
                     %>
                   <% end %>
                   <% if current_user.is_admin == true %>
@@ -123,13 +124,15 @@
                                 flag_path(flag),
                                 method: :delete,
                                 data: {confirm: 'Are you sure?'},
-                                :class => "btn btn-danger mr-1 mt-1"
+                                :class => "btn btn-danger mr-1 mt-1 hint--top hint--rounded hint--error",
+                                'data-hint': 'Remove the flag'
                     %>
                   <% end %>
                   <%= link_to '<i class="fa fa fa-plus" aria-hidden="true"></i> Show more'.html_safe,
                               flag_path(flag),
                               method: :get,
-                              :class => "btn btn-primary mr-1 mt-1"
+                              :class => "btn btn-primary mr-1 mt-1 hint--top hint--rounded hint--info",
+                              'data-hint': 'Information and history'
                   %>
                 </td>
               </tr>

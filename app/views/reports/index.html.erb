@@ -101,7 +101,8 @@
                   <%= link_to '<i class="fa fa-quote-right" aria-hidden="true"></i>'.html_safe,
                               report_path(flag.auth_token),
                               method: :get,
-                              :class => "btn btn-primary mr-1 mt-1"
+                              :class => "btn btn-primary mr-1 mt-1 hint--top hint--rounded hint--error",
+                              'data-hint': 'View JSON Report'
                   %>
                 </td>
               </tr>

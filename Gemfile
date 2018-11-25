@@ -54,6 +54,8 @@ gem 'mini_magick'
 gem 'omniauth-google-oauth2'
 # Development ENV Variables
 gem 'figaro'
+# HINT GEM
+gem 'hint'
 # Active link to
 gem 'active_link_to'
 # Rest Client GEM

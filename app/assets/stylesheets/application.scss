@@ -11,9 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require font-awesome
+ *= require hint
  */
 
 @import "bootstrap";
+@import "hint";
 @import "font-awesome";
 
 html,
