@@ -32,4 +32,17 @@ module InvitesService
       raise
     end
   end
+
+  def healthcheck_invite
+    url = ENV['INVITES_URL_SERVICE'] + '/healthcheck'
+    begin
+      result = RestClient.get url, {accept: :json}
+      return true
+    rescue RestClient::ExceptionWithResponse => err
+      case err.http_code
+      when 404
+        return false
+      end
+    end
+  end
 end

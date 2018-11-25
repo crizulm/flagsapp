@@ -10,6 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     super do
       @token = params[:invite_token]
+      return healthcheck_service
     end
   end
 
@@ -31,6 +32,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.is_admin = true
       end
       resource.save
+    end
+  end
+
+  def healthcheck_service
+    healthcheck = healthcheck_invite
+    if !healthcheck
+      render 'invites/healthcheck_fail'
     end
   end
 

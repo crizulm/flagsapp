@@ -6,6 +6,7 @@ class InvitesController < ApplicationController
 
   def new
     @errors = []
+    healthcheck_service
   end
 
   def create
@@ -26,5 +27,12 @@ class InvitesController < ApplicationController
     err_body = JSON.parse err.response.body
     @errors = err_body['error']
     render :new
+  end
+
+  def healthcheck_service
+    healthcheck = healthcheck_invite
+    unless healthcheck
+      render 'invites/healthcheck_fail'
+    end
   end
 end

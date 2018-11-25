@@ -7,6 +7,7 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
+    healthcheck_service
     @flags = Flag.where(organization_id: current_user.organization_id)
     @flags.each do | flag |
       report_json = JSON.parse get_report(flag.auth_token)
@@ -25,6 +26,15 @@ class ReportsController < ApplicationController
       render json: report, status: :ok
     rescue RestClient::ExceptionWithResponse => err
       render json: err.response.body, status: err.http_code
+    end
+  end
+
+  private
+
+  def healthcheck_service
+    healthcheck = healthcheck_report
+    if !healthcheck
+      render 'reports/healthcheck_fail'
     end
   end
 end
