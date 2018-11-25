@@ -46,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def healthcheck_service
     healthcheck = healthcheck_invite
     unless healthcheck
-      render 'invites/healthcheck_fail'
+      render 'users/registrations/healthcheck_fail'
     end
   end
 

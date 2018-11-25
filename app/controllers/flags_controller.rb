@@ -6,6 +6,7 @@ class FlagsController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :create, :change, :destroy]
 
   def new
+    @healthcheck = healthcheck_report
     @flag = Flag.new
   end
 
