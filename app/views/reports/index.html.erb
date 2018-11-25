@@ -1,119 +1,115 @@
 <h1 class="page-title">Reports</h1>
-<% if @healthcheck %>
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="card border-light">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card border-light">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>
+                #
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                Type
+              </th>
+              <th class="text-center">
+                Total
+              </th>
+              <th class="text-center">
+                Postive
+              </th>
+              <th class="text-center">
+                Negative
+              </th>
+              <th class="text-center">
+                Positive/Negative Rate
+              </th>
+              <th class="text-center">
+                Average Response Time
+              </th>
+              <th class="text-center">
+                Deleted
+              </th>
+              <th class="text-center">
+                JSON
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @flags.each do |flag| %>
               <tr>
-                <th>
-                  #
-                </th>
-                <th>
-                  Name
-                </th>
-                <th>
-                  Type
-                </th>
-                <th class="text-center">
-                  Total
-                </th>
-                <th class="text-center">
-                  Postive
-                </th>
-                <th class="text-center">
-                  Negative
-                </th>
-                <th class="text-center">
-                  Positive/Negative Rate
-                </th>
-                <th class="text-center">
-                  Average Response Time
-                </th>
-                <th class="text-center">
-                  Deleted
-                </th>
-                <th class="text-center">
-                  JSON
-                </th>
-              </tr>
-              </thead>
-              <tbody>
-              <% @flags.each do |flag| %>
-                <tr>
-                  <td>
-                    <strong><%= flag.id %></strong>
-                  </td>
-                  <td>
-                    <%= flag.name %>
-                  </td>
-                  <td>
-                    <% if flag.style_flag == 1 %>
-                      Boolean
-                    <% elsif flag.style_flag == 2 %>
-                      Porcentage
-                    <% elsif flag.style_flag == 3 %>
-                      List
-                    <% end %>
-                  </td>
-                  <td class="text-center">
-                    <%= flag.report.total_request %>
-                  </td>
-                  <td class="text-center">
+                <td>
+                  <strong><%= flag.id %></strong>
+                </td>
+                <td>
+                  <%= flag.name %>
+                </td>
+                <td>
+                  <% if flag.style_flag == 1 %>
+                    Boolean
+                  <% elsif flag.style_flag == 2 %>
+                    Porcentage
+                  <% elsif flag.style_flag == 3 %>
+                    List
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <%= flag.report.total_request %>
+                </td>
+                <td class="text-center">
+                  <%= flag.report.true_answer %>
+                  <% if flag.report.total_request == 0 %>
+                    (0 %)
+                  <% else %>
+                    (<%= (flag.report.true_answer * 100) / flag.report.total_request %> %)
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <%= flag.report.false_answer %>
+                  <% if flag.report.total_request == 0 %>
+                    (0 %)
+                  <% else %>
+                    (<%= (flag.report.false_answer * 100) / flag.report.total_request %> %)
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if flag.report.false_answer == 0 %>
                     <%= flag.report.true_answer %>
-                    <% if flag.report.total_request == 0 %>
-                      (0 %)
-                    <% else %>
-                      (<%= (flag.report.true_answer * 100) / flag.report.total_request %> %)
-                    <% end %>
-                  </td>
-                  <td class="text-center">
-                    <%= flag.report.false_answer %>
-                    <% if flag.report.total_request == 0 %>
-                      (0 %)
-                    <% else %>
-                      (<%= (flag.report.false_answer * 100) / flag.report.total_request %> %)
-                    <% end %>
-                  </td>
-                  <td class="text-center">
-                    <% if flag.report.false_answer == 0 %>
-                      <%= flag.report.true_answer %>
-                    <% else %>
-                      <%= flag.report.true_answer.to_f / flag.report.false_answer.to_f %>
-                    <% end %>
-                  </td>
-                  <td class="text-center">
-                    <% if flag.report.total_request == 0 %>
-                      0.0
-                    <% else %>
-                      <%= flag.report.total_time.to_f / flag.report.total_request %>
-                    <% end %>
-                  </td>
-                  <td class="text-center">
-                    <% if flag.is_deleted == true %>
+                  <% else %>
+                    <%= flag.report.true_answer.to_f / flag.report.false_answer.to_f %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if flag.report.total_request == 0 %>
+                    0.0
+                  <% else %>
+                    <%= flag.report.total_time.to_f / flag.report.total_request %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if flag.is_deleted == true %>
                       <span class="badge badge-danger">
                         Yes
                       </span>
-                    <% end %>
-                  </td>
-                  <td class="text-center">
-                    <%= link_to '<i class="fa fa-quote-right" aria-hidden="true"></i>'.html_safe,
-                                report_path(flag.auth_token),
-                                method: :get,
-                                :class => "btn btn-primary mr-1 mt-1"
-                    %>
-                  </td>
-                </tr>
-              <% end %>
-              </tbody>
-            </table>
-          </div>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <%= link_to '<i class="fa fa-quote-right" aria-hidden="true"></i>'.html_safe,
+                              report_path(flag.auth_token),
+                              method: :get,
+                              :class => "btn btn-primary mr-1 mt-1"
+                  %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
-<% else %>
-  <%= render 'reports/healthcheck_fail' %>
-<% end %>
+</div>

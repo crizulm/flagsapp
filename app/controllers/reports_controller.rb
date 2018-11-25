@@ -7,8 +7,10 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @healthcheck = healthcheck_report
-    if @healthcheck
+    healthcheck = healthcheck_report
+    if !healthcheck
+      render :healthcheck_fail
+    else
       @flags = Flag.where(organization_id: current_user.organization_id)
       @flags.each do |flag|
         report_json = JSON.parse get_report(flag.auth_token)

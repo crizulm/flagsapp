@@ -154,7 +154,17 @@ class FlagsController < ApplicationController
   end
 
   def set_result(flag, result)
-    update_report_result(flag.auth_token, result)
+    healthcheck = healthcheck_report
+    if healthcheck
+      update_report_result(flag.auth_token, result)
+    end
+  end
+
+  def set_time(flag, time)
+    healthcheck = healthcheck_report
+    if healthcheck
+      update_report_time(flag.auth_token, time)
+    end
   end
 
   def set_flag
@@ -185,10 +195,6 @@ class FlagsController < ApplicationController
 
   def flag_params_list_type
     @params = params.require(:flag).permit(:name, :active, :style_flag, external_users_attributes: [:id, :user_id, :active])
-  end
-
-  def set_time(flag, time)
-    update_report_time(flag.auth_token, time)
   end
 
   def evaluate_filter
