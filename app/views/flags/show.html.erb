@@ -8,6 +8,7 @@
 </nav>
 <div class="card border-light">
   <div class="card-body">
+    <h5>General Information</h5>
     <div class="row">
       <div class="col">
         <div class="info-group">
@@ -107,5 +108,105 @@
         </div>
       </div>
     <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="card border-light h-100">
+      <div class="card-body">
+        <div class="table-responsive">
+          <h5>State History</h5>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Status
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @flag_state.each do |state| %>
+                <tr>
+                  <td>
+                    <%= state.date_start %>
+                  </td>
+                  <td>
+                    <% if state.active == true %>
+                      <span class="badge badge-success">
+                        Active
+                      </span>
+                    <% else %>
+                      <span class="badge badge-danger">
+                        Not active
+                      </span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm mt-10">
+    <div class="card border-light h-100">
+      <div class="card-body">
+        <h5>Evaluation History</h5>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>
+                # User
+              </th>
+              <th>
+                Date
+              </th>
+              <th>
+                Hour
+              </th>
+              <th>
+                Result
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @evaluate_history.each do |evaluate| %>
+              <tr>
+                <td>
+                  <%= evaluate.user_id %>
+                </td>
+                <td>
+                  <%= evaluate.date.strftime("%m/%d/%Y") %>
+                </td>
+                <td>
+                  <%= evaluate.date.strftime("%r") %>
+                </td>
+                <td>
+                  <% if evaluate.active == true %>
+                      <span class="badge badge-success">
+                        True
+                      </span>
+                  <% else %>
+                      <span class="badge badge-danger">
+                        False
+                      </span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -16,6 +16,8 @@ class FlagsController < ApplicationController
   def show
     @flag = Flag.includes(:organization).find(params[:id])
     @external_users = ExternalUser.where(flag_id: params[:id])
+    @flag_state = FlagRecord.where(flag_id: params[:id])
+    @evaluate_history = EvaluateHistory.where(flag_id: params[:id])
   end
 
   def evaluate
@@ -47,11 +49,6 @@ class FlagsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def history_flag
-    @flag_state = FlagRecord.where(flag_id: params[:id])
-    @evaluate_history = EvaluateHistory.where(flag_id: params[:id])
   end
 
   def change

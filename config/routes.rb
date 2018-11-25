@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index'
 
   resources :flags, only: [:index, :create, :new, :show, :destroy]
-  get 'flags/:id/history', to: 'flags#history_flag', as: 'history_flag'
   put 'flags/:id/status', to: 'flags#change', as: 'change_status_flag'
   get 'flags/:id/evaluate', to: 'flags#evaluate', as: 'evaluate_flag'
   get 'filter', to: 'flags#filter'
