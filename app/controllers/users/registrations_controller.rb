@@ -10,7 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     super do
       @token = params[:invite_token]
-      return healthcheck_service
+      @errors_service = []
+      if !@token.nil?
+        return healthcheck_service
+      end
     end
   end
 
@@ -19,27 +22,42 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do
       @token = params[:invite_token]
       if !@token.nil?
-        invite_json = JSON.parse show_invite(@token)
-        organization = Organization.find_by(id: invite_json['organization_id'])
-        resource.organization = organization
-        destroy_invite(invite_json['id'])
-        resource.is_admin = false
+        create_with_invitation
       else
-        organization = Organization.new
-        organization.name = params[:organization_name]
-        organization.save
-        resource.organization = organization
-        resource.is_admin = true
+        create_simple
       end
+    end
+  end
+
+  def create_with_invitation
+    begin
+      invite_json = JSON.parse show_invite(@token)
+      organization = Organization.find_by(id: invite_json['organization_id'])
+      resource.organization = organization
+      destroy_invite(invite_json['id'])
+      resource.is_admin = false
+      @errors_service = []
       resource.save
+    rescue RestClient::ExceptionWithResponse => err
+      @errors_service = JSON.parse err.response.body
     end
   end
 
   def healthcheck_service
     healthcheck = healthcheck_invite
-    if !healthcheck
+    unless healthcheck
       render 'invites/healthcheck_fail'
     end
+  end
+
+  def create_simple
+    organization = Organization.new
+    organization.name = params[:organization_name]
+    organization.save
+    resource.organization = organization
+    resource.is_admin = true
+    @errors_service = []
+    resource.save
   end
 
   # GET /resource/edit

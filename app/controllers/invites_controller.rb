@@ -24,8 +24,7 @@ class InvitesController < ApplicationController
   private
 
   def handle_error(err)
-    err_body = JSON.parse err.response.body
-    @errors = err_body['error']
+    @errors = JSON.parse err.response.body
     render :new
   end
 
