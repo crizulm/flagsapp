@@ -34,10 +34,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       invite_json = JSON.parse show_invite(@token)
       organization = Organization.find_by(id: invite_json['organization_id'])
       resource.organization = organization
-      destroy_invite(invite_json['id'])
       resource.is_admin = false
       @errors_service = []
-      resource.save
+      if resource.save
+        destroy_invite(invite_json['id'])
+      end
     rescue RestClient::ExceptionWithResponse => err
       @errors_service = JSON.parse err.response.body
     end
