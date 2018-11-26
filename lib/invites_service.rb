@@ -40,7 +40,7 @@ module InvitesService
       return true
     rescue RestClient::ExceptionWithResponse => err
       case err.http_code
-      when 404
+      when 404, 500, 503
         return false
       end
     end
