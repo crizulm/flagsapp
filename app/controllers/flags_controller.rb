@@ -19,10 +19,15 @@ class FlagsController < ApplicationController
   end
 
   def show
-    @flag = Flag.includes(:organization).find(params[:id])
-    @external_users = ExternalUser.where(flag_id: params[:id])
-    @flag_state = FlagRecord.where(flag_id: params[:id])
-    @evaluate_history = EvaluateHistory.where(flag_id: params[:id])
+    flag_token = params[:id]
+    if validate_is_organization_user(flag_token)
+      @flag = Flag.includes(:organization).find(flag_token)
+      @external_users = ExternalUser.where(flag_id: flag_token)
+      @flag_state = FlagRecord.where(flag_id: flag_token)
+      @evaluate_history = EvaluateHistory.where(flag_id: flag_token)
+    else
+      redirect_to flags_path
+    end
   end
 
   def evaluate
@@ -57,30 +62,45 @@ class FlagsController < ApplicationController
   end
 
   def change
-    @flag = Flag.find(params[:id])
+    flag_token = params[:id]
+    if validate_is_organization_user(flag_token)
+      @flag = Flag.find(flag_token)
 
-    @flag.active = !@flag.active
-    @flag.last_update = DateTime.current
-    @max_id = FlagRecord.where(flag_id: @flag.id).maximum(:id)
-    @flag_record = FlagRecord.find(@max_id)
-    @flag_record.date_end = Date.current
-    @flag_record.save
-    @flag_record_new = @flag.flag_records.new date_start: Date.current, active: @flag.active, date_end: Date.parse('1900-01-01')
-    @flag_record_new.save
-    @flag.save
+      @flag.active = !@flag.active
+      @flag.last_update = DateTime.current
+      @max_id = FlagRecord.where(flag_id: @flag.id).maximum(:id)
+      @flag_record = FlagRecord.find(@max_id)
+      @flag_record.date_end = Date.current
+      @flag_record.save
+      @flag_record_new = @flag.flag_records.new date_start: Date.current, active: @flag.active, date_end: Date.parse('1900-01-01')
+      @flag_record_new.save
+      @flag.save
 
-    redirect_to flags_path
+      redirect_to flags_path
+    else
+      redirect_to flags_path
+    end
   end
 
   def destroy
-    @flag = Flag.find(params[:id])
-    @flag.is_deleted = true
-    @flag.save
+    flag_token = params[:id]
+    if validate_is_organization_user(flag_token)
+      @flag = Flag.find(flag_token)
+      @flag.is_deleted = true
+      @flag.save
 
-    redirect_to flags_path
+      redirect_to flags_path
+    else
+      redirect_to flags_path
+    end
   end
 
   private
+
+  def validate_is_organization_user(flag_token)
+    flag = Flag.includes(:organization).find(flag_token)
+    current_user.organization.id == flag.organization.id
+  end
 
   def start_evaluate(flag, external_id)
     result = case flag.style_flag
