@@ -4,7 +4,7 @@ module ReportsService
   def get_report(flag_token)
     url = ENV['REPORTS_URL_SERVICE'] + '/reports/' + flag_token
     begin
-      result = RestClient.get url, { accept: :json }
+      result = RestClient.get url, { accept: :json, Authorization: ENV['REPORTS_TOKEN_SERVICE'] }
       result.body
     rescue RestClient::ExceptionWithResponse => err
       raise
@@ -14,7 +14,7 @@ module ReportsService
   def get_report_json(flag_token)
     url = ENV['REPORTS_URL_SERVICE'] + '/reports/' + flag_token + '/json'
     begin
-      result = RestClient.get url, { accept: :json }
+      result = RestClient.get url, { accept: :json, Authorization: ENV['REPORTS_TOKEN_SERVICE']  }
       result.body
     rescue RestClient::ExceptionWithResponse => err
       raise
@@ -24,7 +24,9 @@ module ReportsService
   def create_report(flag_token)
     url = ENV['REPORTS_URL_SERVICE'] + '/reports'
     begin
-      result = RestClient.post url, { 'token' => flag_token }.to_json, { content_type: :json, accept: :json }
+      result = RestClient.post url, { 'token' => flag_token }.to_json, { content_type: :json,
+                                                                         accept: :json,
+                                                                         Authorization: ENV['REPORTS_TOKEN_SERVICE'] }
       result.body
     rescue RestClient::ExceptionWithResponse => err
       raise
@@ -34,7 +36,7 @@ module ReportsService
   def update_report_result(flag_token, result)
     url = ENV['REPORTS_URL_SERVICE'] + '/reports/' + flag_token + '/result'
     begin
-      result = RestClient.put url, { 'result' => result }.to_json, { content_type: :json }
+      result = RestClient.put url, { 'result' => result }.to_json, { content_type: :json, Authorization: ENV['REPORTS_TOKEN_SERVICE'] }
       result.body
     rescue RestClient::ExceptionWithResponse => err
       raise
@@ -44,7 +46,7 @@ module ReportsService
   def update_report_time(flag_token, time)
     url = ENV['REPORTS_URL_SERVICE'] + '/reports/' + flag_token + '/time'
     begin
-      result = RestClient.put url, { 'time' => time }.to_json, { content_type: :json }
+      result = RestClient.put url, { 'time' => time }.to_json, { content_type: :json, Authorization: ENV['REPORTS_TOKEN_SERVICE'] }
       result.body
     rescue RestClient::ExceptionWithResponse => err
       raise
