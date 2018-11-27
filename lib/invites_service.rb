@@ -1,12 +1,11 @@
 require 'rest-client'
 
 module InvitesService
-
   def create_invite(organization_id, sender_id, email)
     url = ENV['INVITES_URL_SERVICE'] + '/invites'
     begin
-      result = RestClient.post url, {'organization_id' => organization_id,
-                                     'sender_id' => sender_id, 'email' => email}.to_json, {content_type: :json, accept: :json}
+      result = RestClient.post url, { 'organization_id' => organization_id,
+                                      'sender_id' => sender_id, 'email' => email }.to_json, { content_type: :json, accept: :json }
       result.body
     rescue RestClient::ExceptionWithResponse => err
       raise
@@ -16,7 +15,7 @@ module InvitesService
   def show_invite(token)
     url = ENV['INVITES_URL_SERVICE'] + '/invites/' + token
     begin
-      result = RestClient.get url, {accept: :json}
+      result = RestClient.get url, { accept: :json }
       result.body
     rescue RestClient::ExceptionWithResponse => err
       raise
@@ -26,7 +25,7 @@ module InvitesService
   def destroy_invite(token)
     url = ENV['INVITES_URL_SERVICE'] + '/invites/' + token.to_s
     begin
-      result = RestClient.delete url, {accept: :json}
+      result = RestClient.delete url, { accept: :json }
       result.body
     rescue RestClient::ExceptionWithResponse => err
       raise
@@ -36,7 +35,7 @@ module InvitesService
   def healthcheck_invite
     url = ENV['INVITES_URL_SERVICE'] + '/healthcheck'
     begin
-      RestClient.get url, {accept: :json}
+      RestClient.get url, { accept: :json }
       return true
     rescue RestClient::ExceptionWithResponse => err
       case err.http_code

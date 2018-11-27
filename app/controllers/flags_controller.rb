@@ -7,11 +7,7 @@ class FlagsController < ApplicationController
 
   def new
     healthcheck = healthcheck_report
-    if !healthcheck
-      render :healthcheck_report_fail
-    else
-      @flag = Flag.new
-    end
+    !healthcheck ? render :healthcheck_report_fail : @flag = Flag.new
   end
 
   def index
@@ -27,12 +23,12 @@ class FlagsController < ApplicationController
 
   def evaluate
     flag = Flag.where(auth_token: params[:id]).first
-    return render json: {data: 'Error flag not found'}, status: 400 if flag.nil?
+    return render json: { data: 'Error flag not found' }, status: 400 if flag.nil?
 
     start_time = Time.now
     result = start_evaluate(flag, request.headers['client-id'])
     end_time = Time.now
-    render json: {data: result}, status: :ok
+    render json: { data: result }, status: :ok
     set_time(flag, (end_time - start_time))
   end
 
@@ -155,16 +151,12 @@ class FlagsController < ApplicationController
 
   def set_result(flag, result)
     healthcheck = healthcheck_report
-    if healthcheck
-      update_report_result(flag.auth_token, result)
-    end
+    update_report_result(flag.auth_token, result) if healthcheck
   end
 
   def set_time(flag, time)
     healthcheck = healthcheck_report
-    if healthcheck
-      update_report_time(flag.auth_token, time)
-    end
+    update_report_time(flag.auth_token, time)  if healthcheck
   end
 
   def set_flag

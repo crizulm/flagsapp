@@ -25,9 +25,7 @@ class InvitesController < ApplicationController
 
   def healthcheck_service
     healthcheck = healthcheck_invite
-    unless healthcheck
-      render :healthcheck_fail
-    end
+    render :healthcheck_fail unless healthcheck
   end
 
   def handle_error(err)

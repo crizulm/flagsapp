@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'invites_service'
 
 class Users::RegistrationsController < Devise::RegistrationsController
@@ -11,9 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do
       @token = params[:invite_token]
       @errors_service = []
-      if !@token.nil?
-        return healthcheck_service
-      end
+      return healthcheck_service unless @token.nil?
     end
   end
 
@@ -21,11 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do
       @token = params[:invite_token]
-      if !@token.nil?
-        create_with_invitation
-      else
-        create_simple
-      end
+      !@token.nil? ? create_with_invitation : create_simple
     end
   end
 
@@ -36,9 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.organization = organization
       resource.is_admin = false
       @errors_service = []
-      if resource.save
-        destroy_invite(invite_json['id'])
-      end
+      destroy_invite(invite_json['id']) if resource.save
     rescue RestClient::ExceptionWithResponse => err
       @errors_service = JSON.parse err.response.body
     end
@@ -46,9 +39,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def healthcheck_service
     healthcheck = healthcheck_invite
-    unless healthcheck
-      render 'users/registrations/healthcheck_fail'
-    end
+    render 'users/registrations/healthcheck_fail' unless healthcheck
   end
 
   def create_simple

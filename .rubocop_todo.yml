@@ -84,6 +84,7 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Exclude:
     - 'app/controllers/*'
+    - 'lib/*'
     - 'app/uploaders/*'
     - 'app/controllers/users/*'
     - 'app/models/*'
@@ -214,6 +215,7 @@ Layout/TrailingWhitespace:
 Style/BracesAroundHashParameters:
   Exclude:
     - 'config/initializers/devise.rb'
+    - 'lib/*'
 
 Lint/UnusedMethodArgument:  
   Exclude:
@@ -230,4 +232,6 @@ Layout/LeadingCommentSpace:
 Style/IfUnlessModifier: 
   Exclude:
     - 'config/initializers/rollbar.rb'
-
+Lint/UselessAssignment:
+  Exclude:
+    - 'lib/*'
