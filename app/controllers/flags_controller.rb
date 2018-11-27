@@ -7,7 +7,11 @@ class FlagsController < ApplicationController
 
   def new
     healthcheck = healthcheck_report
-    !healthcheck ? render :healthcheck_report_fail : @flag = Flag.new
+    if !healthcheck
+      render :healthcheck_report_fail
+    else
+      @flag = Flag.new
+    end
   end
 
   def index
