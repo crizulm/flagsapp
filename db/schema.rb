@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 2018_11_24_232906) do
 
   create_table "flag_records", force: :cascade do |t|
     t.bigint "flag_id"
-    t.date "date_start"
-    t.date "date_end"
+    t.datetime "date_start"
+    t.datetime "date_end"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

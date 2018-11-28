@@ -51,7 +51,7 @@ class FlagsController < ApplicationController
     @flag.is_deleted = false
     @flag.flag_request = FlagRequest.new(new_request: 0, new_true_answer: 0)
     @flag.last_update = DateTime.current
-    @flag_record = @flag.flag_records.new date_start: Date.current, active: @flag.active, date_end: Date.parse('1900-01-01')
+    @flag_record = @flag.flag_records.new date_start: DateTime.current, active: @flag.active, date_end: Date.parse('1900-01-01')
     @flag_record.save
     if @flag.save
       create_report(@flag.auth_token)
@@ -70,9 +70,9 @@ class FlagsController < ApplicationController
       @flag.last_update = DateTime.current
       @max_id = FlagRecord.where(flag_id: @flag.id).maximum(:id)
       @flag_record = FlagRecord.find(@max_id)
-      @flag_record.date_end = Date.current
+      @flag_record.date_end = DateTime.current
       @flag_record.save
-      @flag_record_new = @flag.flag_records.new date_start: Date.current, active: @flag.active, date_end: Date.parse('1900-01-01')
+      @flag_record_new = @flag.flag_records.new date_start: DateTime.current, active: @flag.active, date_end: Date.parse('1900-01-01')
       @flag_record_new.save
       @flag.save
 

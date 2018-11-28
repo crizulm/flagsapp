@@ -121,7 +121,10 @@
               <thead>
               <tr>
                 <th>
-                  Date
+                  Date Start
+                </th>
+                <th>
+                  Date End
                 </th>
                 <th>
                   Status
@@ -132,7 +135,14 @@
               <% @flag_state.each do |state| %>
                 <tr>
                   <td>
-                    <%= state.date_start %>
+                    <%= state.date_start.strftime("%m/%d/%Y %r") %>
+                  </td>
+                  <td>
+                    <% if state.date_end == Date.parse('1900-01-01') %>
+                      -
+                    <% else %>
+                      <%= state.date_end.strftime("%m/%d/%Y %r") %>
+                    <% end %>
                   </td>
                   <td>
                     <% if state.active == true %>
