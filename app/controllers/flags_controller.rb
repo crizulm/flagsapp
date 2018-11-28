@@ -66,13 +66,14 @@ class FlagsController < ApplicationController
     if validate_is_organization_user(flag_token)
       @flag = Flag.find(flag_token)
 
+      date_current = DateTime.current
       @flag.active = !@flag.active
-      @flag.last_update = DateTime.current
+      @flag.last_update = date_current
       @max_id = FlagRecord.where(flag_id: @flag.id).maximum(:id)
       @flag_record = FlagRecord.find(@max_id)
-      @flag_record.date_end = DateTime.current
+      @flag_record.date_end = date_current
       @flag_record.save
-      @flag_record_new = @flag.flag_records.new date_start: DateTime.current, active: @flag.active, date_end: Date.parse('1900-01-01')
+      @flag_record_new = @flag.flag_records.new date_start: date_current, active: @flag.active, date_end: Date.parse('1900-01-01')
       @flag_record_new.save
       @flag.save
 
