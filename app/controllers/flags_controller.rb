@@ -254,13 +254,14 @@ class FlagsController < ApplicationController
   end
 
   def cast_consult(date, state_date)
-    date_sql = date == '' ? '1900-01-01' : date
+    date_sql_start = date == '' ? '1900-01-01' : (date + ' 23:59:59.504718')
+    date_sql_end = date == '' ? '1900-01-01' : (date + ' 00:00:00.504718')
     result = "SELECT f.*
        FROM flags f, flag_records fr
-       where fr.flag_id = f.id and
+       where fr.flag_id = f.id and f.is_deleted = false and
        f.organization_id = " + current_user.organization_id.to_s + " and
-       fr.active = " + state_date + " and fr.date_start <= '" + date_sql + "'
-       and (fr.date_end >= '" + date_sql + "' or fr.date_end = '1900-01-01')
+       fr.active = " + state_date + " and fr.date_start <= '" + date_sql_start + "'
+       and (fr.date_end >= '" + date_sql_end + "' or fr.date_end = '1900-01-01')
        GROUP BY f.id"
     result
   end
